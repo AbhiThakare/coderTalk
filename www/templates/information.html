@@ -1,0 +1,48 @@
+<ion-view style="" class=" " id="page4" title="INFORMATION">
+	<ion-nav-buttons side="right">
+		<button class="button icon-left ion-android-search button-stable" ng-click="search()"></button>
+		<button class="button icon-left ion-android-refresh button-stable" ng-click="refresh()"></button>
+		<a ui-sref="addNewItem">
+            <button class="button icon-left ion-ios-plus-outline button-stable" ng-click="" id="searchUser-button15"></button>
+        </a>
+    	<button class="button icon-left ion-log-out button-stable" ng-click="logout()"></button>
+  	</ion-nav-buttons>
+    <ion-content class="scroll-content ionic-scroll  has-header">
+	    <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);" ng-show='informationDatas!==null' ng-repeat="informationData in informationDatas">
+	        <div class="list card">
+	            <div class="item item-thumbnail-left item-avatar">
+	                <img ng-src="../img/user.png" src="../img/user.png">
+	                <p class="ng-binding">{{informationData.date}}</p>
+	                <h2 class="ng-binding">{{informationData.title}}</h2>
+	                <p class="ng-binding">{{informationData.author}}</p>
+	            </div>
+	            <div class="item item-body">
+	                <p class="ng-binding">
+	                	{{informationData.message}}
+	                </p>
+	            </div>
+	            <div class="item tabs tabs-secondary tabs-icon-left">
+	                <a class="tab-item" ng-click="push()">
+	                    <i class="icon ion-thumbsup"></i>
+	                    Like
+	                </a>
+	                <a class="tab-item">
+	                    <i class="icon ion-chatbox"></i>
+	                    Comment
+	                </a>
+	                <a class="tab-item" ng-click="share()">
+	                    <i class="icon ion-share"></i>
+	                    Share
+	                </a>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="scroll-bar scroll-bar-v"><div class="scroll-bar-indicator scroll-bar-fade-out" style="height: 0px; transform: translate3d(0px, 0px, 0px) scaleY(1);"></div>
+	    </div>
+	    <ion-list class=" " id="profile-list4" ng-show='informationDatas===null'>
+            <ion-item style="" id="profile-list-item12" class="item-icon-left  ">
+                <i class="icon ion-android-alert"></i>Nothing to display
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

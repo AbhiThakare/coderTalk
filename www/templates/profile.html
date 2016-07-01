@@ -1,0 +1,23 @@
+<ion-view style="" class=" " id="page6" title="Profile" hide-back-button="true">
+    <ion-content class="has-header" padding="true">
+        <ion-list class=" " id="profile-list4">
+            <div class="item item-thumbnail-left item-avatar">
+                <img ng-src="../img/user.png" src="../img/user.png">
+                <h2 class="ng-binding">{{userProfile.fname}} {{userProfile.lname}}</h2>
+            </div>
+            <ion-item style="" id="profile-list-item10" class="item-icon-left item-icon-right  ">
+                <i class="icon ion-iphone"></i>{{userProfile.phone}}
+                <i class="icon ion-edit icon-accessory"></i>
+            </ion-item>
+            <ion-item style="" id="profile-list-item11" class="item-icon-left  ">
+                <i class="icon ion-email"></i>{{userProfile.email}}</ion-item>
+            <ion-item style="" id="profile-list-item12" class="item-icon-left  ">
+                <i class="icon ion-ionic"></i>Role: {{userProfile.roles}}</ion-item>
+            <ion-item style="" class="  " id="profile-list-item13">Area of excellence: {{userProfile.aoe[0]}}</ion-item>
+        </ion-list>
+        <div style="width: 283px; height: 31px;" class="spacer"></div>
+        <a ui-sref="changePassword">
+            <button class="button button-positive  button-block" ng-click="" id="searchUser-button15">CHANGE PASSWORD</button>
+        </a>
+    </ion-content>
+</ion-view>

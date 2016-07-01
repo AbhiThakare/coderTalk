@@ -1,0 +1,39 @@
+<ion-view style="" class=" " id="page12" title="Search User">
+    <ion-content class="has-header" padding="true">
+        <form class="list " id="searchUser-form6">
+            <label id="searchUser-input14" class="item item-input ">
+                <input placeholder="Search User" type="text" ng-model="searchinput">
+            </label>
+        </form>
+        <button class="button button-positive  button-block" ng-click="search(searchinput)" id="searchUser-button15">SUBMIT</button>
+        <div style="height: 8px;" class="spacer"></div>
+        <div ng-show='showFilter && searchinput'>
+            <h4 id="searcResult" style="color:#000000;font-weight:400;text-align:left;" class=" ">Search Results</h4>        
+            <label id="searchUser-input14" class="item item-input ">
+                <input placeholder="Filter Result" type="text" ng-model="filterResult">
+            </label>
+            <div style="height: 8px;" class="spacer"></div>
+            Result are filter by: {{filterResult}} <BR>
+            <div style="height: 8px;" class="spacer"></div>
+            Sort - 
+            <button class="icon ion-android-arrow-dropup-circle" href="" ng-click="term='fname'"> </button> ---
+            <button class="icon ion-android-arrow-dropdown-circle" href="" ng-click="term='-fname'"> </button>
+            <div style="height: 20px;" class="spacer"></div>
+            <ion-list class=" " id="profile-list4" ng-repeat="userProfile in userProfiles|filter:filterResult|orderBy:term" ng-show='userProfile!==null && searchinput'>
+                <div class="item item-thumbnail-left item-avatar">
+                    <img ng-src="../img/user.png" src="../img/user.png">
+                    <h2 class="ng-binding">{{userProfile.fname}} {{userProfile.lname}}</h2>
+                </div>
+                <ion-item style="" id="profile-list-item10" class="item-icon-left item-icon-right  ">
+                    <i class="icon ion-iphone"></i>{{userProfile.phone}}
+                    <i class="icon ion-edit icon-accessory"></i>
+                </ion-item>
+                <ion-item style="" id="profile-list-item11" class="item-icon-left  ">
+                    <i class="icon ion-email"></i>{{userProfile.email}}</ion-item>
+                <ion-item style="" id="profile-list-item12" class="item-icon-left  ">
+                    <i class="icon ion-ionic"></i>Role: {{userProfile.roles}}</ion-item>
+                <ion-item style="" class="  " id="profile-list-item13">Area of excellence: {{userProfile.aoe[0]}}</ion-item>
+            </ion-list>
+        </div>
+    </ion-content>
+</ion-view>
