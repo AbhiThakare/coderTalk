@@ -119,13 +119,39 @@ angular.module('app')
 })
 
 .service('SignupService', function($q, $http, USER_ROLES) {
+  function getAccessToken() {
+    var LOCAL_DATA = 'yourData';
+    var token = window.localStorage.getItem(LOCAL_DATA);
+    //delete $http.defaults.headers.common["content-type"]
+    return token;
+  }
+
   var signup = function(userData) {
     return $q(function(resolve, reject) {
+      var token = JSON.parse(getAccessToken());
       var req = {
           url: "http://169.44.9.228:8080/mcabuddy/user/new",
           method:'PUT',
-          data: {}
-          
+          data: {
+              "requester": {
+                "accessToken": token.accessToken,
+                "email": token.email
+              },
+              "subject": {
+                "fname": userData.fname,
+                "lname": userData.lname,
+                "email": userData.email,
+                "phone": userData.phoneNo,
+                "pwd": userData.password,
+                "roles": [
+                  "admin", "user", "sme"
+                ],
+                "aoe": ["javascript","mca-ui" ]
+              }
+          },
+          headers: {
+              'Content-Type': 'application/json;charset=UTF-8'
+          }
        }
        $http(req).then(
           function(data) {
@@ -144,21 +170,27 @@ angular.module('app')
   };
 
   var addUser = function(userData) {
-    //$http.defaults.headers.common['accept'] = undefined;
     return $q(function(resolve, reject) {
+      var token = JSON.parse(getAccessToken());
       var req = {
           url: "http://169.44.9.228:8080/mcabuddy/user/new",
           method:'PUT',
           data: {
-            "subject": {
-              "fname": "t2",
-              "lname": "a2",
-              "email": "t2@barclays.com",
-              "phone": "+91-9860306111",
-              "pwd": "password01",
-              "roles": ["user", "sme"],
-              "aoe": ["javascript", "ejs"]
-            }
+              "requester": {
+                "accessToken": token.accessToken,
+                "email": token.email
+              },
+              "subject": {
+                "fname": userData.fname,
+                "lname": userData.lname,
+                "email": userData.email,
+                "phone": userData.phoneNo,
+                "pwd": userData.password,
+                "roles": [
+                  "admin", "user", "sme"
+                ],
+                "aoe": ["javascript","mca-ui" ]
+              }
           },
           headers: {
               'Content-Type': 'application/json;charset=UTF-8'
@@ -181,13 +213,18 @@ angular.module('app')
   };
 
   var changeRole = function(userData) {
-    $http.defaults.headers.common['Content-Type'] = undefined;
+    var token = JSON.parse(getAccessToken());
     return $q(function(resolve, reject) {
       var req = {
           url: "http://169.44.9.228:8080/mcabuddy/user/"+userData.email+"/role/"+userData.role+"",
           method:'PATCH',
-          data: userData
-          //headers: {'Access-Control-Request-Headers': 'accept, origin, content-type'}
+          data :{
+            "accessToken": token.accessToken,
+            "email": token.email
+          },
+          headers: {
+              'Content-Type': 'application/json;charset=UTF-8'
+          }
       }
        $http(req).then(
           function(data) {
@@ -206,14 +243,6 @@ angular.module('app')
   };
 
   var addExpertise = function(userData){
-    //var userTockenData = JSON.parse(ProfileService.getData());
-    function getAccessToken() {
-      var LOCAL_DATA = 'yourData';
-      var token = window.localStorage.getItem(LOCAL_DATA);
-      //delete $http.defaults.headers.common["content-type"]
-      return token;
-    }
-
     return $q(function(resolve, reject) {
       var token = JSON.parse(getAccessToken());
       var req = {
@@ -222,10 +251,14 @@ angular.module('app')
           data :{
             "accessToken": token.accessToken,
             "email": token.email
+          },
+          headers: {
+              'Content-Type': 'application/json;charset=UTF-8'
           }
        }
        $http(req).then(
           function(data) {
+            console.log(data);
             // function to retrive the response
             if(data.data.status=='SUCCESS'){
               resolve(data);
@@ -249,6 +282,12 @@ angular.module('app')
 })
 
 .service('DashboardService', function($q, $http, USER_ROLES) {
+  function getAccessToken() {
+    var LOCAL_DATA = 'yourData';
+    var token = window.localStorage.getItem(LOCAL_DATA);
+    //delete $http.defaults.headers.common["content-type"]
+    return token;
+  }
   var broadcast = function() {
     return $q(function(resolve, reject) {
       var req = {
@@ -321,7 +360,7 @@ angular.module('app')
   var sos = function() {
     return $q(function(resolve, reject) {
       var req = {
-          url: "http://169.44.9.228:8080/mcabuddy/channels/sos/messages/today?index=0",
+          url: "http://169.44.9.228:8080/mcabuddy/channels/sos/messages/today",
           method:'GET',
           params: {index: 0}
        }
@@ -343,14 +382,15 @@ angular.module('app')
 
   var postMessage = function(data) {
     return $q(function(resolve, reject) {
+      var token = JSON.parse(getAccessToken());
       var req = {
           url: "http://169.44.9.228:8080/mcabuddy/"+data.channels+"/broadcast/message/new",
           method:'PUT',
           params: {},
           data: {
               "requester": {
-                "accessToken": "c1d13890af522002e53a29acaf2b9e17c06a264c",
-                "email": "abhinav.thakare@in.ibm.com"
+                "accessToken": token.accessToken,
+                "email": token.email
               },
               "message": {
                   "title":"Test message",
@@ -360,8 +400,10 @@ angular.module('app')
                   "date":"2016-04-15T00:00:00Z",
                   "tags": ["java", "javascript"]
               }
+          },
+          headers: {
+              'Content-Type': 'application/json;charset=UTF-8'
           }
-          // headers : {'Content-Type':undefined,}
        }
        $http(req).then(
           function(data) {

@@ -4,13 +4,6 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('app', ['ionic', 'ngResource'])
 
-.config(function ($httpProvider) {
-  $httpProvider.defaults.headers.common = undefined;
-  $httpProvider.defaults.headers.post = undefined;
-  $httpProvider.defaults.headers.put = undefined;
-  $httpProvider.defaults.headers.patch = undefined;
-})
-
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

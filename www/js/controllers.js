@@ -221,6 +221,7 @@ angular.module('app')
       });
     }, function(err) {
       $ionicLoading.hide();
+      console.log(JSON.stringify(err));
       var alertPopup = $ionicPopup.alert({
         title: 'Update Expertise Failed!',
         template: 'There was some problem with server.'
