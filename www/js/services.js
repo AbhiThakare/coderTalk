@@ -30,15 +30,12 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         if (role == 'user') {
             role = USER_ROLES.public;
         }
-        // Set the token as header for your requests!
-        //$http.defaults.headers.common['Content-Type'] = {};
     }
 
     function destroyUserCredentials() {
         authToken = undefined;
         username = '';
         isAuthenticated = false;
-        //$http.defaults.headers.common['X-Auth-Token'] = undefined;
         window.localStorage.removeItem(LOCAL_TOKEN_KEY);
         window.localStorage.removeItem(LOCAL_DATA);
     }
@@ -52,7 +49,6 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                 }
             }
             $http(req).then(function(data) {
-                // function to retrive the response
                 if (data.data.status == 'SUCCESS') {
                     resolve(data.data.response);
                 } else {
@@ -74,9 +70,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                 }
             }
             $http(req).then(function(data) {
-                // function to retrive the response
                 if (data.data.status == 'SUCCESS') {
-                    // Make a request and receive your auth token from your server
                     storeUserCredentials(data.data.response.fname + '.yourServerToken', data.data.response);
                     resolve(data.data.response);
                 } else {
@@ -116,7 +110,6 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
     function getAccessToken() {
         var LOCAL_DATA = 'yourData';
         var token = window.localStorage.getItem(LOCAL_DATA);
-        //delete $http.defaults.headers.common["content-type"]
         return token;
     }
     var signup = function(userData) {
@@ -145,7 +138,6 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                 }
             }
             $http(req).then(function(data) {
-                // function to retrive the response
                 if (data.data.status == 'SUCCESS') {
                     resolve(data);
                 } else {
@@ -182,7 +174,6 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                 }
             }
             $http(req).then(function(data) {
-                // function to retrive the response
                 if (data.data.status == 'SUCCESS') {
                     resolve(data);
                 } else {
@@ -208,7 +199,6 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                 }
             }
             $http(req).then(function(data) {
-                // function to retrive the response
                 if (data.data.status == 'SUCCESS') {
                     resolve(data);
                 } else {
@@ -235,7 +225,6 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
             }
             $http(req).then(function(data) {
                 console.log(data);
-                // function to retrive the response
                 if (data.data.status == 'SUCCESS') {
                     resolve(data);
                 } else {
@@ -256,7 +245,6 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
     function getAccessToken() {
         var LOCAL_DATA = 'yourData';
         var token = window.localStorage.getItem(LOCAL_DATA);
-        //delete $http.defaults.headers.common["content-type"]
         return token;
     }
     var broadcast = function() {
@@ -269,7 +257,6 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                 }
             }
             $http(req).then(function(data) {
-                // function to retrive the response
                 if (data.data.status == 'SUCCESS') {
                     resolve(data);
                 } else {
@@ -290,7 +277,6 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                 }
             }
             $http(req).then(function(data) {
-                // function to retrive the response
                 if (data.data.status == 'SUCCESS') {
                     resolve(data);
                 } else {
@@ -311,7 +297,6 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                 }
             }
             $http(req).then(function(data) {
-                // function to retrive the response
                 if (data.data.status == 'SUCCESS') {
                     resolve(data);
                 } else {
@@ -332,7 +317,26 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                 }
             }
             $http(req).then(function(data) {
-                // function to retrive the response
+                if (data.data.status == 'SUCCESS') {
+                    resolve(data);
+                } else {
+                    reject('Update Role Failed!');
+                }
+            }, function(err) {
+                reject(err);
+            });
+        });
+    };
+    var like = function(messageId) {
+        return $q(function(resolve, reject) {
+            var req = {
+                url: "http://169.44.9.228:8080/mcabuddy/channels/messages/"+messageId+"/like",
+                method: 'PATCH',
+            	headers: {
+                    'Content-Type': 'application/json;charset=UTF-8'
+                }
+            }
+            $http(req).then(function(data) {
                 if (data.data.status == 'SUCCESS') {
                     resolve(data);
                 } else {
@@ -368,7 +372,6 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                 }
             }
             $http(req).then(function(data) {
-                // function to retrive the response
                 if (data.data.status == 'SUCCESS') {
                     resolve(data);
                 } else {
@@ -384,7 +387,8 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         information: information,
         knowledge: knowledge,
         sos: sos,
-        postMessage: postMessage
+        postMessage: postMessage,
+        like: like
     };
 }).factory('ProfileService', function() {
     var getData = function() {

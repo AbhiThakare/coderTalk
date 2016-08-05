@@ -22,7 +22,6 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
         });
         AuthService.login(data.username, data.password).then(function(authenticated) {
             $scope.assets = authenticated;
-                //$scope.username = authenticated.fname;
             $ionicLoading.hide();
             $state.go('tabs.broadcast', {}, {
                 reload: true
@@ -102,6 +101,18 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
     $scope.search = function() {
         $state.go('searchUser');
     };
+    $scope.like = function(messageId) {
+    	DashboardService.like(messageId).then(function(likeCount) {
+            $ionicLoading.hide();
+            $scope.broadcastDatas = broadcastData.data.response;
+        }, function(err) {
+            $ionicLoading.hide();
+            var alertPopup = $ionicPopup.alert({
+                title: 'Like Failed!',
+                template: 'There was some problem with server.'
+            });
+        });
+    };
     $scope.refresh = function() {
         $state.go('tabs.broadcast', {}, {
             reload: true
@@ -127,6 +138,18 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
     };
     $scope.search = function() {
         $state.go('searchUser');
+    };
+    $scope.like = function(messageId) {
+    	DashboardService.like(messageId).then(function(likeCount) {
+            $ionicLoading.hide();
+            $scope.broadcastDatas = broadcastData.data.response;
+        }, function(err) {
+            $ionicLoading.hide();
+            var alertPopup = $ionicPopup.alert({
+                title: 'Like Failed!',
+                template: 'There was some problem with server.'
+            });
+        });
     };
     $scope.refresh = function() {
         $state.go('tabs.knowledge', {}, {
@@ -159,6 +182,18 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
     $scope.search = function() {
         $state.go('searchUser');
     };
+    $scope.like = function(messageId) {
+    	DashboardService.like(messageId).then(function(likeCount) {
+            $ionicLoading.hide();
+            $scope.broadcastDatas = broadcastData.data.response;
+        }, function(err) {
+            $ionicLoading.hide();
+            var alertPopup = $ionicPopup.alert({
+                title: 'Like Failed!',
+                template: 'There was some problem with server.'
+            });
+        });
+    };
     $scope.refresh = function() {
         $state.go('tabs.information', {}, {
             reload: true
@@ -184,6 +219,18 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
     };
     $scope.search = function() {
         $state.go('searchUser');
+    };
+    $scope.like = function(messageId) {
+    	DashboardService.like(messageId).then(function(likeCount) {
+            $ionicLoading.hide();
+            $scope.broadcastDatas = broadcastData.data.response;
+        }, function(err) {
+            $ionicLoading.hide();
+            var alertPopup = $ionicPopup.alert({
+                title: 'Like Failed!',
+                template: 'There was some problem with server.'
+            });
+        });
     };
     $scope.refresh = function() {
         $state.go('tabs.sos', {}, {
