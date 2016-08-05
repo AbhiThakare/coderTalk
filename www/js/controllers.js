@@ -102,7 +102,7 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
         $state.go('searchUser');
     };
     $scope.like = function(messageId) {
-    	DashboardService.like(messageId).then(function(likeCount) {
+        DashboardService.like(messageId).then(function(likeCount) {
             $ionicLoading.hide();
             $scope.broadcastDatas = broadcastData.data.response;
         }, function(err) {
@@ -140,7 +140,7 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
         $state.go('searchUser');
     };
     $scope.like = function(messageId) {
-    	DashboardService.like(messageId).then(function(likeCount) {
+        DashboardService.like(messageId).then(function(likeCount) {
             $ionicLoading.hide();
             $scope.broadcastDatas = broadcastData.data.response;
         }, function(err) {
@@ -183,7 +183,7 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
         $state.go('searchUser');
     };
     $scope.like = function(messageId) {
-    	DashboardService.like(messageId).then(function(likeCount) {
+        DashboardService.like(messageId).then(function(likeCount) {
             $ionicLoading.hide();
             $scope.broadcastDatas = broadcastData.data.response;
         }, function(err) {
@@ -221,7 +221,7 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
         $state.go('searchUser');
     };
     $scope.like = function(messageId) {
-    	DashboardService.like(messageId).then(function(likeCount) {
+        DashboardService.like(messageId).then(function(likeCount) {
             $ionicLoading.hide();
             $scope.broadcastDatas = broadcastData.data.response;
         }, function(err) {
@@ -288,10 +288,10 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
         AuthService.search(data).then(function(searchedData) {
             $ionicLoading.hide();
             $scope.showFilter = false;
-            if(searchedData !== null) {
+            if (searchedData !== null) {
                 $scope.showFilter = true;
             }
-            if(searchedData === null) {
+            if (searchedData === null) {
                 var alertPopup = $ionicPopup.alert({
                     title: 'Search Failed!',
                     template: 'No result found!'
@@ -330,10 +330,4 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
             });
         });
     };
-}).controller('changePasswordCtrl', function($scope) {
-
-}).controller('creditsCtrl', function($scope) {
-
-}).controller('detailedPageCtrl', function($scope) {
-    
-});
+}).controller('changePasswordCtrl', function($scope) {}).controller('creditsCtrl', function($scope) {}).controller('detailedPageCtrl', function($scope) {});

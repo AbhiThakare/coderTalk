@@ -330,9 +330,9 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
     var like = function(messageId) {
         return $q(function(resolve, reject) {
             var req = {
-                url: "http://169.44.9.228:8080/mcabuddy/channels/messages/"+messageId+"/like",
+                url: "http://169.44.9.228:8080/mcabuddy/channels/messages/" + messageId + "/like",
                 method: 'PATCH',
-            	headers: {
+                headers: {
                     'Content-Type': 'application/json;charset=UTF-8'
                 }
             }
