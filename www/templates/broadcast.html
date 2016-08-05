@@ -8,10 +8,10 @@
     	<button class="button icon-left ion-log-out button-stable" ng-click="logout()"></button>
   	</ion-nav-buttons>
     <ion-content class="has-header" padding="true">
-        <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);" ng-show='broadcastDatas!==null' ng-repeat="broadcastData in broadcastDatas">
-            <div class="list card">
+        <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);" ng-show='broadcastDatas!==null' >
+            <div class="list card" ng-repeat="broadcastData in broadcastDatas">
                 <div class="item item-thumbnail-left item-avatar">
-                    <img ng-src="../img/user.png" src="../img/user.png">
+                    <img ng-src="../img/user.png" src="../www/img/user.png">
                     <p class="ng-binding">{{broadcastData.date}}</p>
                     <h2 class="ng-binding">{{broadcastData.title}}</h2>
                     <p class="ng-binding">{{broadcastData.author}}</p>

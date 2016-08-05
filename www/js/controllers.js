@@ -270,6 +270,11 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
         DashboardService.postMessage(data).then(function(postData) {
             $ionicLoading.hide();
             $scope.messageDatas = postData.data.response;
+            var alertPopup = $ionicPopup.alert({
+                title: 'Post Message Successful!',
+                template: 'Your Message added and open for every one to read!'
+            });
+            $state.go('tabs.broadcast');
         }, function(err) {
             $ionicLoading.hide();
             var alertPopup = $ionicPopup.alert({

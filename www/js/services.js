@@ -347,19 +347,18 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         return $q(function(resolve, reject) {
             var token = JSON.parse(getAccessToken());
             var req = {
-                url: "http://169.44.9.228:8080/mcabuddy/" + data.channels + "/broadcast/message/new",
+                url: "http://169.44.9.228:8080/mcabuddy/channels/" + data.channels + "/message/new",
                 method: 'PUT',
-                params: {},
                 data: {
                     "requester": {
                         "accessToken": token.accessToken,
                         "email": token.email
                     },
                     "message": {
-                        "title": "Test message",
-                        "message": "Please ignore this is test message",
+                        "title": data.subject,
+                        "message": data.message,
                         "likes": 1,
-                        "author": "abhinav.thakare@in.ibm.com",
+                        "author": token.email,
                         "date": "2016-04-15T00:00:00Z",
                         "tags": ["java", "javascript"]
                     }
