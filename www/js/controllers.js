@@ -105,6 +105,10 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
         DashboardService.like(messageId).then(function(likeCount) {
             $ionicLoading.hide();
             $scope.broadcastDatas = broadcastData.data.response;
+            var alertPopup = $ionicPopup.alert({
+                title: 'Like Successfull',
+                template: 'Thank you!'
+            });
         }, function(err) {
             $ionicLoading.hide();
             var alertPopup = $ionicPopup.alert({
@@ -143,6 +147,10 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
         DashboardService.like(messageId).then(function(likeCount) {
             $ionicLoading.hide();
             $scope.broadcastDatas = broadcastData.data.response;
+            var alertPopup = $ionicPopup.alert({
+                title: 'Like Successfull',
+                template: 'Thank you!'
+            });
         }, function(err) {
             $ionicLoading.hide();
             var alertPopup = $ionicPopup.alert({
@@ -186,6 +194,10 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
         DashboardService.like(messageId).then(function(likeCount) {
             $ionicLoading.hide();
             $scope.broadcastDatas = broadcastData.data.response;
+            var alertPopup = $ionicPopup.alert({
+                title: 'Like Successfull',
+                template: 'Thank you!'
+            });
         }, function(err) {
             $ionicLoading.hide();
             var alertPopup = $ionicPopup.alert({
@@ -224,6 +236,10 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
         DashboardService.like(messageId).then(function(likeCount) {
             $ionicLoading.hide();
             $scope.broadcastDatas = broadcastData.data.response;
+            var alertPopup = $ionicPopup.alert({
+                title: 'Like Successfull',
+                template: 'Thank you!'
+            });
         }, function(err) {
             $ionicLoading.hide();
             var alertPopup = $ionicPopup.alert({
