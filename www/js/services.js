@@ -340,7 +340,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                 if (data.data.status == 'SUCCESS') {
                     resolve(data);
                 } else {
-                    reject('Update Role Failed!');
+                    reject('Like Failed!');
                 }
             }, function(err) {
                 reject(err);
