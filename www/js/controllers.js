@@ -87,6 +87,7 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
     DashboardService.broadcast().then(function(broadcastData) {
         $ionicLoading.hide();
         $scope.broadcastDatas = broadcastData.data.response;
+        $scope.date = new Date(broadcastData.data.response.date)
     }, function(err) {
         $ionicLoading.hide();
         var alertPopup = $ionicPopup.alert({
