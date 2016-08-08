@@ -102,6 +102,9 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
         $state.go('searchUser');
     };
     $scope.like = function(messageId) {
+    	$ionicLoading.show({
+            templateUrl: "templates/loading.html"
+        });
         DashboardService.like(messageId).then(function(likeCount) {
             $ionicLoading.hide();
             $state.go('tabs.broadcast', {}, {
@@ -142,6 +145,9 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
         $state.go('searchUser');
     };
     $scope.like = function(messageId) {
+    	$ionicLoading.show({
+            templateUrl: "templates/loading.html"
+        });
         DashboardService.like(messageId).then(function(likeCount) {
             $ionicLoading.hide();
             $state.go('tabs.knowledge', {}, {
@@ -187,6 +193,9 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
         $state.go('searchUser');
     };
     $scope.like = function(messageId) {
+    	$ionicLoading.show({
+            templateUrl: "templates/loading.html"
+        });
         DashboardService.like(messageId).then(function(likeCount) {
             $ionicLoading.hide();
             $state.go('tabs.information', {}, {
@@ -227,6 +236,9 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
         $state.go('searchUser');
     };
     $scope.like = function(messageId) {
+    	$ionicLoading.show({
+            templateUrl: "templates/loading.html"
+        });
         DashboardService.like(messageId).then(function(likeCount) {
             $ionicLoading.hide();
             $state.go('tabs.sos', {}, {
