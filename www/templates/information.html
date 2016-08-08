@@ -22,7 +22,7 @@
                     </p>
                 </div>
                 <div class="item tabs tabs-secondary tabs-icon-left">
-                    <a class="tab-item" ng-click="like(informationData.uuid)">
+                    <a class="tab-item" ng-class="{ 'activated'   : informationData.likes > 0 }" ng-click="like(informationData.uuid)">
                         <i class="icon ion-thumbsup"></i>
                         Like {{informationData.likes}}
                     </a>
