@@ -104,10 +104,8 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
     $scope.like = function(messageId) {
         DashboardService.like(messageId).then(function(likeCount) {
             $ionicLoading.hide();
-            $scope.broadcastDatas = broadcastData.data.response;
-            var alertPopup = $ionicPopup.alert({
-                title: 'Like Successfull',
-                template: 'Thank you!'
+            $state.go('tabs.broadcast', {}, {
+                reload: true
             });
         }, function(err) {
             $ionicLoading.hide();
@@ -146,10 +144,8 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
     $scope.like = function(messageId) {
         DashboardService.like(messageId).then(function(likeCount) {
             $ionicLoading.hide();
-            $scope.broadcastDatas = broadcastData.data.response;
-            var alertPopup = $ionicPopup.alert({
-                title: 'Like Successfull',
-                template: 'Thank you!'
+            $state.go('tabs.knowledge', {}, {
+                reload: true
             });
         }, function(err) {
             $ionicLoading.hide();
@@ -193,10 +189,8 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
     $scope.like = function(messageId) {
         DashboardService.like(messageId).then(function(likeCount) {
             $ionicLoading.hide();
-            $scope.broadcastDatas = broadcastData.data.response;
-            var alertPopup = $ionicPopup.alert({
-                title: 'Like Successfull',
-                template: 'Thank you!'
+            $state.go('tabs.information', {}, {
+                reload: true
             });
         }, function(err) {
             $ionicLoading.hide();
@@ -235,10 +229,8 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
     $scope.like = function(messageId) {
         DashboardService.like(messageId).then(function(likeCount) {
             $ionicLoading.hide();
-            $scope.broadcastDatas = broadcastData.data.response;
-            var alertPopup = $ionicPopup.alert({
-                title: 'Like Successfull',
-                template: 'Thank you!'
+            $state.go('tabs.sos', {}, {
+                reload: true
             });
         }, function(err) {
             $ionicLoading.hide();
