@@ -66,8 +66,8 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
         SignupService.addUser(data).then(function(authenticated) {
             $ionicLoading.hide();
             var alertPopup = $ionicPopup.alert({
-                title: 'Signup Successfull',
-                template: 'You can now login!'
+                title: 'Successfull',
+                template: 'User added successfully!'
             });
         }, function(err) {
             $ionicLoading.hide();
@@ -270,7 +270,7 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
             $ionicLoading.hide();
             var alertPopup = $ionicPopup.alert({
                 title: 'Updated Successfull',
-                template: 'Your role hase been updated'
+                template: 'Your role has been updated'
             });
         }, function(err) {
             $ionicLoading.hide();
@@ -290,7 +290,7 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
             $ionicLoading.hide();
             var alertPopup = $ionicPopup.alert({
                 title: 'Expertise Added Successfull',
-                template: 'Your Expertise hase been updated'
+                template: 'Your Expertise has been updated'
             });
         }, function(err) {
             $ionicLoading.hide();

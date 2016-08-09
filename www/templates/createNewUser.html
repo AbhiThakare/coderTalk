@@ -1,6 +1,6 @@
 <ion-view style="" class=" " id="page9" title="Create New User">
     <ion-content class="has-header" padding="true">
-        <form class="list " id="createNewUser-form3">
+    	<form class="list " name="adduserform" class="css-form" novalidate id="createNewUser-form3" ng-submit="adduserform.$valid && addUser(data)">
             <label id="createNewUser-input5" class="item item-input ">
                 <input placeholder="First Name" type="text" ng-model="data.fname">
             </label>
@@ -28,7 +28,7 @@
             <ion-checkbox style="">Admin</ion-checkbox>
             <ion-checkbox style="">SME</ion-checkbox>
             <ion-checkbox style="">User</ion-checkbox>
-            <button class="button button-positive  button-block" ng-click="addUser(data)" id="createNewUser-button11">SUBMIT</button>
+            <button class="button button-positive  button-block" id="createNewUser-button11">SUBMIT</button>
         </form>
     </ion-content>
 </ion-view>
