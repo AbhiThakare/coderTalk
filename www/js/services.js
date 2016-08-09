@@ -114,15 +114,10 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
     }
     var signup = function(userData) {
         return $q(function(resolve, reject) {
-            var token = JSON.parse(getAccessToken());
             var req = {
                 url: "http://169.44.9.228:8080/mcabuddy/user/new",
                 method: 'PUT',
                 data: {
-                    "requester": {
-                        "accessToken": token.accessToken,
-                        "email": token.email
-                    },
                     "subject": {
                         "fname": userData.fname,
                         "lname": userData.lname,

@@ -2,19 +2,25 @@
   <ion-content class="has-header" scroll="false" padding="true">
     <h2 id="signup-heading2" style="color:#000000;font-weight:400;text-align:center;" class=" ">Login</h2>
     <div style="height: 40px;" class="spacer"></div>
-        <form class="list " id="login-form7">
+        <form class="list " name="loginform" class="css-form" novalidate id="login-form7" ng-submit="loginform.$valid && login(data)">
             <ion-list class=" " id="login-list5">
                 <label id="login-input15" class="item item-input ">
                     <span class="input-label">Username</span>
-                    <input placeholder="" type="text" ng-model="data.username">
+                    <input placeholder="" required=""  type="text" ng-model="data.username" name="username">
                 </label>
+			    <div ng-show="loginform.$submitted || loginform.username.$touched">
+			      <div style="color:red;margin:5px;padding:5px;" ng-show="loginform.username.$error.required">Please enter User name.</div>
+			    </div>
                 <label id="login-input16" class="item item-input ">
                     <span class="input-label">Password</span>
-                    <input placeholder="" type="password" ng-model="data.password">
+                    <input placeholder="" required=""  type="password" ng-model="data.password" name="password">
                 </label>
+                <div ng-show="loginform.$submitted || loginform.password.$touched">
+			      <div style="color:red;margin:5px;padding:5px;" ng-show="loginform.password.$error.required">Please enter Password.</div>
+			    </div>
             </ion-list>
             <div style="height: 40px;" class="spacer"></div>
-            <button class="button button-block button-positive" ng-click="login(data)" id="login-button13">Log in</button>
+            <input  class="button button-block button-positive" type="submit" id="login-button13" value="Login"/>
             <a ui-sref="signup" id="login-button2" class=" button button-positive  button-block button-clear ">Or create an account</a>
         </form>
     </ion-content>
