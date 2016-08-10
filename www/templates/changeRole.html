@@ -1,6 +1,6 @@
 <ion-view style="" class=" " id="page10" title="Change Role">
     <ion-content class="has-header" padding="true">
-        <form class="list " id="changeRole-form4">
+    	<form class="list " name="changeroleform" class="css-form" novalidate id="changeRole-form4" ng-submit="changeroleform.$valid && changeRole(data)">
             <label id="changeRole-select1" class="item item-select ">
                 <span class="input-label">Change Role To</span>
                 <select ng-model="data.role">
@@ -11,9 +11,13 @@
             </label>
             <div style="width: 283px; height: 28px;" class="spacer"></div>
             <label id="changeRole-input11" class="item item-input ">
-                <input placeholder="Email" type="email" ng-model="data.email">
+                <input placeholder="Email" required=""  name="email" type="email" ng-model="data.email">
             </label>
+            <div ng-show="changeroleform.$submitted || changeroleform.email.$touched">
+		      <div style="color:red;margin:5px;padding:5px;" ng-show="changeroleform.email.$error.required">Please enter email.</div>
+		      <div style="color:red;margin:5px;padding:5px;" ng-show="changeroleform.email.$error.email">Please enter valid email.</div>
+		    </div>
+            <button class="button button-positive  button-block" id="changeRole-button12">SUBMIT</button>
         </form>
-        <button class="button button-positive  button-block" ng-click="changeRole(data)" id="changeRole-button12">SUBMIT</button>
     </ion-content>
 </ion-view>
