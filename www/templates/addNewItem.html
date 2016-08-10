@@ -1,14 +1,18 @@
 <ion-view style="" class=" " id="page18" title="Post New Message">
     <ion-content class="has-header" padding="true">
-        <form class="list " id="changePassword-form2">
+    	<form class="list " name="postmesgform" class="css-form" novalidate id="changePassword-form2" ng-submit="postmesgform.$valid && postMessage(data)">
             <label id="subject" class="item item-input ">
-                <input placeholder="Subject" type="text" ng-model="data.subject">
+                <input placeholder="Subject" required=""  name="subject"  type="text" ng-model="data.subject">
             </label>
-            <div style="width: 283px; height: 27px;" class="spacer"></div>
+            <div ng-show="postmesgform.$submitted || postmesgform.subject.$touched">
+		      <div style="color:red;margin:5px;padding:5px;" ng-show="postmesgform.subject.$error.required">Please enter subject.</div>
+		    </div>
             <label id="message" class="item item-input ">
-                <input placeholder="Message" type="text" ng-model="data.message">
+                <input placeholder="Message" required=""  name="message"  type="text" ng-model="data.message">
             </label>
-            <div style="width: 283px; height: 31px;" class="spacer"></div>
+            <div ng-show="postmesgform.$submitted || postmesgform.message.$touched">
+		      <div style="color:red;margin:5px;padding:5px;" ng-show="postmesgform.message.$error.required">Please enter message.</div>
+		    </div>
             <label id="type" class="item item-select ">
                 <span class="input-label">Type</span>
                 <select ng-model="data.channels">
@@ -18,12 +22,13 @@
                     <option value="sos">SOS</option>
                 </select>
             </label>
-            <div style="width: 283px; height: 31px;" class="spacer"></div>
             <label id="tag" class="item item-input ">
-                <input placeholder="Tag" type="text" ng-model="data.tag">
+                <input placeholder="Tag" required=""  name="tag" type="text" ng-model="data.tag">
             </label>
+            <div ng-show="postmesgform.$submitted || postmesgform.tag.$touched">
+		      <div style="color:red;margin:5px;padding:5px;" ng-show="postmesgform.tag.$error.required">Please enter tag.</div>
+		    </div>
+		    <button class=" button button-positive  button-block " type="submit" id="changePassword-button10">POST NEW MESSAGE</button>
         </form>
-        <div style="width: 283px; height: 33px;" class="spacer"></div>
-        <button class=" button button-positive  button-block " id="changePassword-button10" ng-click="postMessage(data)">POST NEW MESSAGE</button>
     </ion-content>
 </ion-view>

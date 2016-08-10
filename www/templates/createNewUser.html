@@ -2,29 +2,42 @@
     <ion-content class="has-header" padding="true">
     	<form class="list " name="adduserform" class="css-form" novalidate id="createNewUser-form3" ng-submit="adduserform.$valid && addUser(data)">
             <label id="createNewUser-input5" class="item item-input ">
-                <input placeholder="First Name" type="text" ng-model="data.fname">
+                <input placeholder="First Name" required=""  name="firstname" type="text" ng-model="data.fname">
             </label>
-            <div style="width: 283px; height: 19px;" class="spacer"></div>
+            <div ng-show="adduserform.$submitted || adduserform.firstname.$touched">
+		      <div style="color:red;margin:5px;padding:5px;" ng-show="adduserform.firstname.$error.required">Please enter first name.</div>
+		    </div>
             <label id="createNewUser-input6" class="item item-input ">
-                <input placeholder="Last Name" type="text" ng-model="data.lname">
+                <input placeholder="Last Name" required=""  name="lasttname" type="text" ng-model="data.lname">
             </label>
-            <div style="width: 283px; height: 22px;" class="spacer"></div>
+            <div ng-show="adduserform.$submitted || adduserform.lasttname.$touched">
+		      <div style="color:red;margin:5px;padding:5px;" ng-show="adduserform.lasttname.$error.required">Please enter Last name.</div>
+		    </div>
             <label id="createNewUser-input7" class="item item-input ">
-                <input placeholder="Email" type="email" ng-model="data.email">
+                <input placeholder="Email" required=""  name="email" type="email" ng-model="data.email">
             </label>
-            <div style="width: 283px; height: 18px;" class="spacer"></div>
+            <div ng-show="adduserform.$submitted || adduserform.email.$touched">
+		      <div style="color:red;margin:5px;padding:5px;" ng-show="adduserform.email.$error.required">Please enter email.</div>
+		      <div style="color:red;margin:5px;padding:5px;" ng-show="adduserform.email.$error.email">Please enter valid email.</div>
+		    </div>
             <label id="createNewUser-input8" class="item item-input ">
-                <input placeholder="Phone" type="tel" ng-model="data.phoneNo">
+                <input placeholder="Phone" required=""  name="phoneNo" type="tel" ng-model="data.phoneNo">
             </label>
-            <div style="width: 283px; height: 20px;" class="spacer"></div>
+            <div ng-show="adduserform.$submitted || adduserform.firstname.$touched">
+		      <div style="color:red;margin:5px;padding:5px;" ng-show="adduserform.phoneNo.$error.required">Please enter phone no.</div>
+		    </div>
             <label id="createNewUser-input9" class="item item-input ">
-                <input placeholder="Password" type="password" ng-model="data.password">
+                <input placeholder="Password" required=""  name="password" type="password" ng-model="data.password">
             </label>
-            <div style="width: 283px; height: 20px;" class="spacer"></div>
+            <div ng-show="adduserform.$submitted || adduserform.password.$touched">
+		      <div style="color:red;margin:5px;padding:5px;" ng-show="adduserform.password.$error.required">Please enter password.</div>
+		    </div>
             <label id="createNewUser-input10" class="item item-input ">
-                <input placeholder="Confirm Password" type="password" ng-model="data.confirmPass">
+                <input placeholder="Confirm Password" required=""  name="confpassword" type="password" ng-model="data.confirmPass">
             </label>
-            <div style="width: 283px; height: 20px;" class="spacer"></div>
+            <div ng-show="adduserform.$submitted || adduserform.confpassword.$touched">
+		      <div style="color:red;margin:5px;padding:5px;" ng-show="adduserform.confpassword.$error.required">Please enter password.</div>
+		    </div>
             <ion-checkbox style="">Admin</ion-checkbox>
             <ion-checkbox style="">SME</ion-checkbox>
             <ion-checkbox style="">User</ion-checkbox>
