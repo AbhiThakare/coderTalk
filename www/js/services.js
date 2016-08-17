@@ -73,12 +73,13 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
     	var token = 'Basic '+window.btoa(name+':'+pw);
         return $q(function(resolve, reject) {
             var req = {
-                url: "http://169.44.9.228:8080/mcabuddy/user/authenticate",
+                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/user/authenticate",
                 method: 'POST',
-                params: {
-                    email: name,
-                    pwd: pw
-                }
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Authorization': getHeaderToken()
+                },
+                params: {'email': name}
             }
             $http(req).then(function(data) {
                 if (data.data.status == 'SUCCESS') {
@@ -131,18 +132,16 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
     var signup = function(userData) {
         return $q(function(resolve, reject) {
             var req = {
-                url: "http://169.44.9.228:8080/mcabuddy/user/new",
+                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/user",
                 method: 'PUT',
                 data: {
-                    "subject": {
-                        "fname": userData.fname,
-                        "lname": userData.lname,
-                        "email": userData.email,
-                        "phone": userData.phoneNo,
-                        "pwd": userData.password,
-                        "roles": ["admin", "user", "sme"],
-                        "aoe": ["javascript", "mca-ui"]
-                    }
+                    "fname": userData.fname,
+                    "lname": userData.lname,
+                    "email": userData.email,
+                    "phone": userData.phoneNo,
+                    "pwd": userData.password,
+                    "roles": ["admin", "user", "sme"],
+                    "aoe": ["javascript", "mca-ui"]
                 },
                 headers: {
                     'Content-Type': 'application/json;charset=UTF-8'
@@ -163,25 +162,19 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         return $q(function(resolve, reject) {
             var token = JSON.parse(getAccessToken());
             var req = {
-                url: "http://169.44.9.228:8080/mcabuddy/user/new",
-                method: 'PUT',
+                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/user/",
+                method: 'PATCH',
                 data: {
-                    "requester": {
-                        "accessToken": token.accessToken,
-                        "email": token.email
-                    },
-                    "subject": {
-                        "fname": userData.fname,
-                        "lname": userData.lname,
-                        "email": userData.email,
-                        "phone": userData.phoneNo,
-                        "pwd": userData.password,
-                        "roles": ["admin", "user", "sme"],
-                        "aoe": ["javascript", "mca-ui"]
-                    }
+                	"fname": userData.fname,
+                    "lname": userData.lname,
+                    "email": userData.email,
+                    "phone": userData.phoneNo,
+                    "roles": ["admin", "user", "sme"],
+                    "aoe": ["javascript", "mca-ui"]
                 },
                 headers: {
-                    'Content-Type': 'application/json;charset=UTF-8'
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    'Authorization': getHeaderToken()
                 }
             }
             $http(req).then(function(data) {
@@ -360,10 +353,11 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
     var like = function(messageId) {
         return $q(function(resolve, reject) {
             var req = {
-                url: "http://169.44.9.228:8080/mcabuddy/channels/messages/" + messageId + "/like",
+                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/channels/messages/" + messageId + "/like",
                 method: 'PATCH',
                 headers: {
-                    'Content-Type': 'application/json;charset=UTF-8'
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    'Authorization':getHeaderToken(),
                 }
             }
             $http(req).then(function(data) {
@@ -381,24 +375,19 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         return $q(function(resolve, reject) {
             var token = JSON.parse(getAccessToken());
             var req = {
-                url: "http://169.44.9.228:8080/mcabuddy/channels/" + data.channels + "/message/new",
+                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/channels/" + data.channels + "/message",
                 method: 'PUT',
                 data: {
-                    "requester": {
-                        "accessToken": token.accessToken,
-                        "email": token.email
-                    },
-                    "message": {
-                        "title": data.subject,
-                        "message": data.message,
-                        "likes": 1,
-                        "author": token.email,
-                        "date": "2016-04-15T00:00:00Z",
-                        "tags": ["java", "javascript"]
-                    }
+                	"title":data.subject,
+                    "message":data.message,
+                    "likes":1,
+                    "author": token.email,
+                    "date":"2016-04-15T00:00:00Z",
+                    "tags": ["java", "javascript"]
                 },
                 headers: {
-                    'Content-Type': 'application/json;charset=UTF-8'
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    'Authorization':getHeaderToken(),
                 }
             }
             $http(req).then(function(data) {

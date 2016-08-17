@@ -63,7 +63,7 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
         $ionicLoading.show({
             templateUrl: "templates/loading.html"
         });
-        SignupService.addUser(data).then(function(authenticated) {
+        SignupService.signup(data).then(function(authenticated) {
             $ionicLoading.hide();
             var alertPopup = $ionicPopup.alert({
                 title: 'Successfull',
