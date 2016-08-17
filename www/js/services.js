@@ -77,7 +77,6 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                 url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/user/authenticate",
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
                     'Authorization': token
                 },
                 params: {'email': name}

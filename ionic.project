@@ -1,10 +1,4 @@
 {
   "name": "coderTalk",
-  "app_id": "935d1d532d2a",
-  "proxies": [
-    {
-      "path": "/authenticate",
-      "proxyUrl": "http://169.44.9.228:8080/mcabuddy/user"
-    }
-  ]
+  "app_id": "935d1d532d2a"
 }
