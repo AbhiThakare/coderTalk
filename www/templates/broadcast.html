@@ -8,7 +8,7 @@
     	<button class="button icon-left ion-log-out button-stable" ng-click="logout()"></button>
   	</ion-nav-buttons>
     <ion-content class="has-header" padding="true">
-        <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);" ng-show='broadcastDatas!==null' >
+        <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);" ng-show='broadcastDatas!==undefined'>
             <div class="list card" ng-repeat="broadcastData in broadcastDatas">
                 <div class="item item-thumbnail-left item-avatar">
                     <img ng-src="../www/img/user.png" src="../www/img/user.png">
@@ -35,7 +35,7 @@
         </div>
         <div class="scroll-bar scroll-bar-v"><div class="scroll-bar-indicator scroll-bar-fade-out" style="height: 0px; transform: translate3d(0px, 0px, 0px) scaleY(1);"></div>
         </div>
-       <ion-list class=" " id="profile-list4" ng-show='broadcastDatas===null'>
+       <ion-list class=" " id="profile-list4" ng-show='broadcastDatas===undefined'>
             <ion-item style="" id="profile-list-item12" class="item-icon-left  ">
                 <i class="icon ion-android-alert"></i>Nothing to display
             </ion-item>

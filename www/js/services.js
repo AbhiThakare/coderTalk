@@ -1,6 +1,7 @@
 angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
     var LOCAL_TOKEN_KEY = 'yourTokenKey';
     var LOCAL_DATA = 'yourData';
+    var TOKEN = 'token';
     var username = '';
     var isAuthenticated = false;
     var role = '';
@@ -14,9 +15,10 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         }
     }
 
-    function storeUserCredentials(token, data) {
-        window.localStorage.setItem(LOCAL_TOKEN_KEY, token);
+    function storeUserCredentials(nameToken, data, token) {
+        window.localStorage.setItem(LOCAL_TOKEN_KEY, nameToken);
         window.localStorage.setItem(LOCAL_DATA, JSON.stringify(data));
+        window.localStorage.setItem(TOKEN, token);
         useCredentials(token, data);
     }
 
@@ -39,13 +41,21 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         window.localStorage.removeItem(LOCAL_TOKEN_KEY);
         window.localStorage.removeItem(LOCAL_DATA);
     }
+    function getHeaderToken() {
+        var LOCAL_TOKEN = 'token';
+        var token = window.localStorage.getItem(LOCAL_TOKEN);
+        return token;
+    }
     var search = function(userData) {
         return $q(function(resolve, reject) {
             var req = {
-                url: "http://169.44.9.228:8080/mcabuddy/user",
+                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/user",
                 method: 'GET',
                 params: {
                     any: userData
+                },
+                headers: {
+                    'Authorization':getHeaderToken()
                 }
             }
             $http(req).then(function(data) {
@@ -60,6 +70,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         });
     };
     var login = function(name, pw) {
+    	var token = 'Basic '+window.btoa(name+':'+pw);
         return $q(function(resolve, reject) {
             var req = {
                 url: "http://169.44.9.228:8080/mcabuddy/user/authenticate",
@@ -71,7 +82,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
             }
             $http(req).then(function(data) {
                 if (data.data.status == 'SUCCESS') {
-                    storeUserCredentials(data.data.response.fname + '.yourServerToken', data.data.response);
+                    storeUserCredentials(data.data.response.fname + '.yourServerToken', data.data.response, token);
                     resolve(data.data.response);
                 } else {
                     reject('Login Failed!');
@@ -110,6 +121,11 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
     function getAccessToken() {
         var LOCAL_DATA = 'yourData';
         var token = window.localStorage.getItem(LOCAL_DATA);
+        return token;
+    }
+    function getHeaderToken() {
+        var LOCAL_TOKEN = 'token';
+        var token = window.localStorage.getItem(LOCAL_TOKEN);
         return token;
     }
     var signup = function(userData) {
@@ -183,14 +199,15 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         var token = JSON.parse(getAccessToken());
         return $q(function(resolve, reject) {
             var req = {
-                url: "http://169.44.9.228:8080/mcabuddy/user/" + userData.email + "/role/" + userData.role + "",
+                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/user" + userData.email + "/role/" + userData.role + "",
                 method: 'PATCH',
                 data: {
                     "accessToken": token.accessToken,
                     "email": token.email
                 },
                 headers: {
-                    'Content-Type': 'application/json;charset=UTF-8'
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    'Authorization':getHeaderToken()
                 }
             }
             $http(req).then(function(data) {
@@ -208,14 +225,15 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         return $q(function(resolve, reject) {
             var token = JSON.parse(getAccessToken());
             var req = {
-                url: "http://169.44.9.228:8080/mcabuddy/user/" + userData.email + "/expertise/" + userData.expertise + "",
+                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/user/" + userData.email + "/expertise/" + userData.expertise + "",
                 method: 'PATCH',
                 data: {
                     "accessToken": token.accessToken,
                     "email": token.email
                 },
                 headers: {
-                    'Content-Type': 'application/json;charset=UTF-8'
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    'Authorization':getHeaderToken()
                 }
             }
             $http(req).then(function(data) {
@@ -242,13 +260,21 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         var token = window.localStorage.getItem(LOCAL_DATA);
         return token;
     }
+    function getHeaderToken() {
+        var LOCAL_TOKEN = 'token';
+        var token = window.localStorage.getItem(LOCAL_TOKEN);
+        return token;
+    }
     var broadcast = function() {
         return $q(function(resolve, reject) {
             var req = {
-                url: "http://169.44.9.228:8080/mcabuddy/channels/broadcast/messages/today",
+                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/channels/broadcast/messages",
                 method: 'GET',
-                params: {
-                    index: 0
+                headers: {
+                    'Authorization':getHeaderToken(),
+                    'fromDate':'2016-08-01T00:00:00.000+0530',
+                    'toDate':'2016-08-11T00:00:00.000+0530',
+                    'page':0
                 }
             }
             $http(req).then(function(data) {
@@ -265,10 +291,13 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
     var information = function() {
         return $q(function(resolve, reject) {
             var req = {
-                url: "http://169.44.9.228:8080/mcabuddy/channels/information/messages/today",
+                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/channels/information/messages",
                 method: 'GET',
-                params: {
-                    index: 0
+                headers: {
+                    'Authorization':getHeaderToken(),
+                    'fromDate':'2016-08-01T00:00:00.000+0530',
+                    'toDate':'2016-08-11T00:00:00.000+0530',
+                    'page':0
                 }
             }
             $http(req).then(function(data) {
@@ -285,10 +314,13 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
     var knowledge = function() {
         return $q(function(resolve, reject) {
             var req = {
-                url: "http://169.44.9.228:8080/mcabuddy/channels/knowledge/messages/today",
+                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/channels/knowledge/messages",
                 method: 'GET',
-                params: {
-                    index: 0
+                headers: {
+                    'Authorization':getHeaderToken(),
+                    'fromDate':'2016-08-01T00:00:00.000+0530',
+                    'toDate':'2016-08-11T00:00:00.000+0530',
+                    'page':0
                 }
             }
             $http(req).then(function(data) {
@@ -305,10 +337,13 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
     var sos = function() {
         return $q(function(resolve, reject) {
             var req = {
-                url: "http://169.44.9.228:8080/mcabuddy/channels/sos/messages/today",
+                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/channels/sos/messages",
                 method: 'GET',
-                params: {
-                    index: 0
+                headers: {
+                    'Authorization':getHeaderToken(),
+                    'fromDate':'2016-08-01T00:00:00.000+0530',
+                    'toDate':'2016-08-11T00:00:00.000+0530',
+                    'page':0
                 }
             }
             $http(req).then(function(data) {
