@@ -39,6 +39,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         username = '';
         isAuthenticated = false;
         window.localStorage.removeItem(LOCAL_TOKEN_KEY);
+        window.localStorage.removeItem(TOKEN);
         window.localStorage.removeItem(LOCAL_DATA);
     }
     function getHeaderToken() {
@@ -77,7 +78,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
-                    'Authorization': getHeaderToken()
+                    'Authorization': token
                 },
                 params: {'email': name}
             }
