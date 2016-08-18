@@ -266,7 +266,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                 headers: {
                     'Authorization':getHeaderToken(),
                     'fromDate':'2016-08-01T00:00:00.000+0530',
-                    'toDate':'2016-08-11T00:00:00.000+0530',
+                    'toDate':'2016-08-18T00:00:00.000+0530',
                     'page':0
                 }
             }
