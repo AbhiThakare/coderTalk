@@ -23,7 +23,7 @@
             <label id="createNewUser-input8" class="item item-input ">
                 <input placeholder="Phone" required=""  name="phoneNo" type="tel" ng-model="data.phoneNo">
             </label>
-            <div ng-show="adduserform.$submitted || adduserform.firstname.$touched">
+            <div ng-show="adduserform.$submitted || adduserform.phoneNo.$touched">
 		      <div style="color:red;margin:5px;padding:5px;" ng-show="adduserform.phoneNo.$error.required">Please enter phone no.</div>
 		    </div>
             <label id="createNewUser-input9" class="item item-input ">

@@ -53,7 +53,7 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
             $ionicLoading.hide();
             var alertPopup = $ionicPopup.alert({
                 title: 'Signup Failed!',
-                template: 'There was some problem with server.'
+                template: err.data.errDetails || ''
             });
         });
     };
@@ -73,7 +73,7 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
             $ionicLoading.hide();
             var alertPopup = $ionicPopup.alert({
                 title: 'Add User Failed!',
-                template: 'There was some problem with server.'
+                template: err.data.errDetails || ''
             });
         });
     };

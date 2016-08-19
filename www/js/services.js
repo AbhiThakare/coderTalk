@@ -26,10 +26,10 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         role = (data.roles !== null && data.roles !== undefined) ? data.roles[0] : 'user';
         isAuthenticated = true;
         authToken = token;
-        if (role == 'admin') {
+        if (role == 'ROLE_ADMIN') {
             role = USER_ROLES.admin;
         }
-        if (role == 'user') {
+        if (role == 'ROLE_USER') {
             role = USER_ROLES.public;
         }
     }
@@ -140,7 +140,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                     "email": userData.email,
                     "phone": userData.phoneNo,
                     "pwd": userData.password,
-                    "roles": ["admin", "user", "sme"],
+                    "roles": ["user"],
                     "aoe": ["javascript", "mca-ui"]
                 },
                 headers: {
