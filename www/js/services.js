@@ -23,7 +23,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
     }
 
     function useCredentials(token, data) {
-        role = (data.roles !== null && data.roles !== undefined) ? data.roles[0] : 'user';
+        role = (data.roles !== null && data.roles !== undefined) ? data.roles[0] : 'ROLE_USER';
         isAuthenticated = true;
         authToken = token;
         if (role == 'ROLE_ADMIN') {
@@ -46,6 +46,11 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
     function getHeaderToken() {
         var LOCAL_TOKEN = 'token';
         var token = window.localStorage.getItem(LOCAL_TOKEN);
+        return token;
+    }
+    function getAccessToken() {
+        var LOCAL_DATA = 'yourData';
+        var token = window.localStorage.getItem(LOCAL_DATA);
         return token;
     }
     var search = function(userData) {
@@ -96,6 +101,31 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
             });
         });
     };
+    var changePassword = function(userData) {
+    	var token = JSON.parse(getAccessToken());
+    	return $q(function(resolve, reject) {
+            var req = {
+                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/user/"+token.email+"/pwd",
+                method: 'PATCH',
+                params: {
+                	newPwd: userData.newPass
+                },
+                headers: {
+                	'Content-Type': 'application/json;charset=UTF-8',
+                    'Authorization': getHeaderToken()
+                }
+            }
+            $http(req).then(function(data) {
+                if (data.data.status == 'SUCCESS') {
+                    resolve(data.data.response);
+                } else {
+                    reject('Search Failed!');
+                }
+            }, function(err) {
+                reject(err);
+            });
+        });
+    };    
     var logout = function() {
         destroyUserCredentials();
     };
@@ -111,6 +141,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         logout: logout,
         isAuthorized: isAuthorized,
         search: search,
+        changePassword: changePassword,
         isAuthenticated: function() {
             return isAuthenticated;
         },
@@ -127,7 +158,6 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         var token = window.localStorage.getItem(LOCAL_DATA);
         return token;
     }
-
     function getHeaderToken() {
         var LOCAL_TOKEN = 'token';
         var token = window.localStorage.getItem(LOCAL_TOKEN);

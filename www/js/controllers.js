@@ -26,6 +26,7 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
         });
         AuthService.login(data.username, data.password).then(function(authenticated) {
             $scope.assets = authenticated;
+            $scope.role = authenticated.roles[1];
             $ionicLoading.hide();
             $state.go('tabs.broadcast', {}, {
                 reload: true
@@ -382,4 +383,26 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
             });
         });
     };
-}).controller('changePasswordCtrl', function($scope) {}).controller('creditsCtrl', function($scope) {}).controller('detailedPageCtrl', function($scope) {});
+}).controller('changePasswordCtrl', function($scope, $state, $ionicLoading, $ionicPopup, AuthService) {
+	$scope.changePassword = function(data) {
+		$ionicLoading.show({
+            templateUrl: "templates/loading.html"
+        });
+		AuthService.changePassword(data).then(function(postData) {
+            $ionicLoading.hide();
+            var alertPopup = $ionicPopup.alert({
+                title: 'Password Changed Successful!',
+                template: 'Please login again'
+            });
+            AuthService.logout();
+            $state.go('login');
+        }, function(err) {
+            $ionicLoading.hide();
+            var alertPopup = $ionicPopup.alert({
+                title: 'Password Changed Failed!',
+                template: 'There was some problem with server.'
+            });
+        });
+	};
+	
+}).controller('creditsCtrl', function($scope) {}).controller('detailedPageCtrl', function($scope) {});
