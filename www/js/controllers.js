@@ -16,6 +16,10 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
     });
 }).controller('loginCtrl', function($scope, $state, $ionicPopup, $ionicLoading, AuthService) {
     $scope.data = {};
+    var token = window.localStorage.getItem('token');
+    if (token !== null) {
+        $state.go('tabs.broadcast');
+    }
     $scope.login = function(data) {
         $ionicLoading.show({
             templateUrl: "templates/loading.html"
@@ -258,8 +262,35 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
             reload: true
         });
     };
-}).controller('profileCtrl', function($scope, $state, $ionicPopup, ProfileService) {
+}).controller('profileCtrl', function($scope, $state, $ionicPopup, $ionicLoading, ProfileService) {
     $scope.userProfile = JSON.parse(ProfileService.getData());
+    $scope.editPhone = function(data) {
+        $ionicPopup.prompt({
+            title: 'Edit Phone No',
+            inputType: 'tel',
+            inputPlaceholder: 'Enter your new mobile no',
+            maxLength: 10
+        }).then(function(res) {
+            if (res) {
+                $ionicLoading.show({
+                    templateUrl: "templates/loading.html"
+                });
+                ProfileService.editPhone(res).then(function(authenticated) {
+                    $ionicLoading.hide();
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Updated Successfull',
+                        template: 'Your phone has been updated'
+                    });
+                }, function(err) {
+                    $ionicLoading.hide();
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Update phone Failed!',
+                        template: 'There was some problem with server.'
+                    });
+                });
+            }
+        });
+    };
 }).controller('changeRoleCtrl', function($scope, $state, $ionicPopup, $ionicLoading, SignupService) {
     $scope.data = {};
     $scope.changeRole = function(data) {

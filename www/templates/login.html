@@ -6,7 +6,7 @@
             <ion-list class=" " id="login-list5">
                 <label id="login-input15" class="item item-input ">
                     <span class="input-label">Username</span>
-                    <input placeholder="" required=""  type="text" ng-model="data.username" name="username">
+                    <input placeholder="" autocapitalize="none" required=""  type="text" ng-model="data.username" name="username">
                 </label>
 			    <div ng-show="loginform.$submitted || loginform.username.$touched">
 			      <div style="color:red;margin:5px;padding:5px;" ng-show="loginform.username.$error.required">Please enter User name.</div>

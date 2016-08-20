@@ -42,6 +42,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         window.localStorage.removeItem(TOKEN);
         window.localStorage.removeItem(LOCAL_DATA);
     }
+
     function getHeaderToken() {
         var LOCAL_TOKEN = 'token';
         var token = window.localStorage.getItem(LOCAL_TOKEN);
@@ -56,7 +57,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                     any: userData
                 },
                 headers: {
-                    'Authorization':getHeaderToken()
+                    'Authorization': getHeaderToken()
                 }
             }
             $http(req).then(function(data) {
@@ -71,7 +72,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         });
     };
     var login = function(name, pw) {
-    	var token = 'Basic '+window.btoa(name+':'+pw);
+        var token = 'Basic ' + window.btoa(name + ':' + pw);
         return $q(function(resolve, reject) {
             var req = {
                 url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/user/authenticate",
@@ -79,7 +80,9 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                 headers: {
                     'Authorization': token
                 },
-                params: {'email': name}
+                params: {
+                    'email': name
+                }
             }
             $http(req).then(function(data) {
                 if (data.data.status == 'SUCCESS') {
@@ -124,6 +127,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         var token = window.localStorage.getItem(LOCAL_DATA);
         return token;
     }
+
     function getHeaderToken() {
         var LOCAL_TOKEN = 'token';
         var token = window.localStorage.getItem(LOCAL_TOKEN);
@@ -165,7 +169,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                 url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/user/",
                 method: 'PATCH',
                 data: {
-                	"fname": userData.fname,
+                    "fname": userData.fname,
                     "lname": userData.lname,
                     "email": userData.email,
                     "phone": userData.phoneNo,
@@ -200,7 +204,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                 },
                 headers: {
                     'Content-Type': 'application/json;charset=UTF-8',
-                    'Authorization':getHeaderToken()
+                    'Authorization': getHeaderToken()
                 }
             }
             $http(req).then(function(data) {
@@ -226,7 +230,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                 },
                 headers: {
                     'Content-Type': 'application/json;charset=UTF-8',
-                    'Authorization':getHeaderToken()
+                    'Authorization': getHeaderToken()
                 }
             }
             $http(req).then(function(data) {
@@ -253,6 +257,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         var token = window.localStorage.getItem(LOCAL_DATA);
         return token;
     }
+
     function getHeaderToken() {
         var LOCAL_TOKEN = 'token';
         var token = window.localStorage.getItem(LOCAL_TOKEN);
@@ -264,10 +269,10 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                 url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/channels/broadcast/messages",
                 method: 'GET',
                 headers: {
-                    'Authorization':getHeaderToken(),
-                    'fromDate':'2016-08-01T00:00:00.000+0530',
-                    'toDate':'2016-08-18T00:00:00.000+0530',
-                    'page':0
+                    'Authorization': getHeaderToken(),
+                    'fromDate': '2016-08-01T00:00:00.000+0530',
+                    'toDate': '2016-08-18T00:00:00.000+0530',
+                    'page': 0
                 }
             }
             $http(req).then(function(data) {
@@ -287,10 +292,10 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                 url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/channels/information/messages",
                 method: 'GET',
                 headers: {
-                    'Authorization':getHeaderToken(),
-                    'fromDate':'2016-08-01T00:00:00.000+0530',
-                    'toDate':'2016-08-11T00:00:00.000+0530',
-                    'page':0
+                    'Authorization': getHeaderToken(),
+                    'fromDate': '2016-08-01T00:00:00.000+0530',
+                    'toDate': '2016-08-11T00:00:00.000+0530',
+                    'page': 0
                 }
             }
             $http(req).then(function(data) {
@@ -310,10 +315,10 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                 url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/channels/knowledge/messages",
                 method: 'GET',
                 headers: {
-                    'Authorization':getHeaderToken(),
-                    'fromDate':'2016-08-01T00:00:00.000+0530',
-                    'toDate':'2016-08-11T00:00:00.000+0530',
-                    'page':0
+                    'Authorization': getHeaderToken(),
+                    'fromDate': '2016-08-01T00:00:00.000+0530',
+                    'toDate': '2016-08-11T00:00:00.000+0530',
+                    'page': 0
                 }
             }
             $http(req).then(function(data) {
@@ -333,10 +338,10 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                 url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/channels/sos/messages",
                 method: 'GET',
                 headers: {
-                    'Authorization':getHeaderToken(),
-                    'fromDate':'2016-08-01T00:00:00.000+0530',
-                    'toDate':'2016-08-11T00:00:00.000+0530',
-                    'page':0
+                    'Authorization': getHeaderToken(),
+                    'fromDate': '2016-08-01T00:00:00.000+0530',
+                    'toDate': '2016-08-11T00:00:00.000+0530',
+                    'page': 0
                 }
             }
             $http(req).then(function(data) {
@@ -357,7 +362,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json;charset=UTF-8',
-                    'Authorization':getHeaderToken(),
+                    'Authorization': getHeaderToken(),
                 }
             }
             $http(req).then(function(data) {
@@ -378,16 +383,16 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                 url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/channels/" + data.channels + "/message",
                 method: 'PUT',
                 data: {
-                	"title":data.subject,
-                    "message":data.message,
-                    "likes":1,
+                    "title": data.subject,
+                    "message": data.message,
+                    "likes": 1,
                     "author": token.email,
-                    "date":"2016-04-15T00:00:00Z",
+                    "date": "2016-04-15T00:00:00Z",
                     "tags": ["java", "javascript"]
                 },
                 headers: {
                     'Content-Type': 'application/json;charset=UTF-8',
-                    'Authorization':getHeaderToken(),
+                    'Authorization': getHeaderToken(),
                 }
             }
             $http(req).then(function(data) {
@@ -409,14 +414,43 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         postMessage: postMessage,
         like: like
     };
-}).factory('ProfileService', function() {
+}).factory('ProfileService', function($q, $http, USER_ROLES) {
     var getData = function() {
         var LOCAL_DATA = 'yourData';
         var token = window.localStorage.getItem(LOCAL_DATA);
         return token;
     };
+
+    function getHeaderToken() {
+        var LOCAL_TOKEN = 'token';
+        var token = window.localStorage.getItem(LOCAL_TOKEN);
+        return token;
+    }
+    var editPhone = function(phoneNo) {
+        return $q(function(resolve, reject) {
+            var token = JSON.parse(getData());
+            var req = {
+                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/user/" + token.email + "/phone/" + phoneNo,
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    'Authorization': getHeaderToken(),
+                }
+            }
+            $http(req).then(function(data) {
+                if (data.data.status == 'SUCCESS') {
+                    resolve(data);
+                } else {
+                    reject('Update phone Failed!');
+                }
+            }, function(err) {
+                reject(err);
+            });
+        });
+    };
     return {
-        getData: getData
+        getData: getData,
+        editPhone: editPhone
     };
 }).factory('AuthInterceptor', function($rootScope, $q, AUTH_EVENTS) {
     return {
