@@ -184,7 +184,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                     "phone": userData.phoneNo,
                     "pwd": userData.password,
                     "roles": roles,
-                    "aoe": ["javascript", "mca-ui"]
+                    "aoe": []
                 },
                 headers: {
                     'Content-Type': 'application/json;charset=UTF-8'
@@ -213,7 +213,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                     "email": userData.email,
                     "phone": userData.phoneNo,
                     "roles": ["admin", "user", "sme"],
-                    "aoe": ["javascript", "mca-ui"]
+                    "aoe": []
                 },
                 headers: {
                     'Content-Type': 'application/json;charset=UTF-8',
