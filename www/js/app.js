@@ -2,7 +2,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('app', ['ionic', 'ngResource']).run(function($ionicPlatform) {
+angular.module('app', ['ionic', 'ngResource', 'ngCordova']).run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -13,7 +13,7 @@ angular.module('app', ['ionic', 'ngResource']).run(function($ionicPlatform) {
             StatusBar.styleDefault();
         }
     });
-}).run(function($rootScope, $state, $ionicPopup, AuthService, AUTH_EVENTS) {
+}).run(function($rootScope, $state, $ionicPopup, AuthService, AUTH_EVENTS, $cordovaPush) {
     $rootScope.$on('$stateChangeStart', function(event, next, nextParams, fromState) {
         if ('data' in next && 'authorizedRoles' in next.data) {
             var authorizedRoles = next.data.authorizedRoles;
