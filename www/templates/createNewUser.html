@@ -38,9 +38,9 @@
             <div ng-show="adduserform.$submitted || adduserform.confpassword.$touched">
 		      <div style="color:red;margin:5px;padding:5px;" ng-show="adduserform.confpassword.$error.required">Please enter password.</div>
 		    </div>
-            <ion-checkbox style="">Admin</ion-checkbox>
-            <ion-checkbox style="">SME</ion-checkbox>
-            <ion-checkbox style="">User</ion-checkbox>
+            <ion-checkbox style="" ng-model="data.value1" ng-true-value="'admin'" ng-false-value="'NO'">Admin</ion-checkbox>
+            <ion-checkbox style="" ng-model="data.value2" ng-true-value="'sme'" ng-false-value="'NO'">SME</ion-checkbox>
+            <ion-checkbox style="" ng-model="data.value3" ng-true-value="'user'" ng-false-value="'NO'">User</ion-checkbox>
             <button class="button button-positive  button-block" id="createNewUser-button11">SUBMIT</button>
         </form>
     </ion-content>

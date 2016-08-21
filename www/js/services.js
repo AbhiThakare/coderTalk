@@ -23,7 +23,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
     }
 
     function useCredentials(token, data) {
-        role = (data.roles !== null && data.roles !== undefined) ? data.roles[0] : 'ROLE_USER';
+        role = (data.roles !== null && data.roles !== undefined) ? data.roles[1] : 'ROLE_USER';
         isAuthenticated = true;
         authToken = token;
         if (role == 'ROLE_ADMIN') {
@@ -48,6 +48,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         var token = window.localStorage.getItem(LOCAL_TOKEN);
         return token;
     }
+
     function getAccessToken() {
         var LOCAL_DATA = 'yourData';
         var token = window.localStorage.getItem(LOCAL_DATA);
@@ -102,16 +103,16 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         });
     };
     var changePassword = function(userData) {
-    	var token = JSON.parse(getAccessToken());
-    	return $q(function(resolve, reject) {
+        var token = JSON.parse(getAccessToken());
+        return $q(function(resolve, reject) {
             var req = {
-                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/user/"+token.email+"/pwd",
+                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/user/" + token.email + "/pwd",
                 method: 'PATCH',
                 params: {
-                	newPwd: userData.newPass
+                    newPwd: userData.newPass
                 },
                 headers: {
-                	'Content-Type': 'application/json;charset=UTF-8',
+                    'Content-Type': 'application/json;charset=UTF-8',
                     'Authorization': getHeaderToken()
                 }
             }
@@ -125,7 +126,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                 reject(err);
             });
         });
-    };    
+    };
     var logout = function() {
         destroyUserCredentials();
     };
@@ -158,12 +159,20 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         var token = window.localStorage.getItem(LOCAL_DATA);
         return token;
     }
+
     function getHeaderToken() {
         var LOCAL_TOKEN = 'token';
         var token = window.localStorage.getItem(LOCAL_TOKEN);
         return token;
     }
     var signup = function(userData) {
+        var roles = [];
+        (userData.value1 !== undefined) ? roles.push(userData.value1): '';
+        (userData.value2 !== undefined) ? roles.push(userData.value2): '';
+        (userData.value3 !== undefined) ? roles.push(userData.value3): '';
+        if (userData.value1 === undefined && userData.value2 === undefined && userData.value3 === undefined) {
+            roles.push('user');
+        }
         return $q(function(resolve, reject) {
             var req = {
                 url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/user",
@@ -174,7 +183,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
                     "email": userData.email,
                     "phone": userData.phoneNo,
                     "pwd": userData.password,
-                    "roles": ["user"],
+                    "roles": roles,
                     "aoe": ["javascript", "mca-ui"]
                 },
                 headers: {
