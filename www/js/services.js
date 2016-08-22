@@ -23,13 +23,17 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
     }
 
     function useCredentials(token, data) {
-        role = (data.roles !== null && data.roles !== undefined) ? data.roles[1] : 'ROLE_USER';
+        var adminrole = (data.roles !== null && data.roles !== undefined) ? data.roles.includes('ROLE_ADMIN') : false;
+        var userrole = (data.roles !== null && data.roles !== undefined) ? data.roles.includes('ROLE_USER') : false;
+        var smerole = (data.roles !== null && data.roles !== undefined) ? data.roles.includes('ROLE_SME') : false;
+        role = (data.roles !== null && data.roles !== undefined) ? 'ROLE_USER' : 'ROLE_USER';
         isAuthenticated = true;
         authToken = token;
-        if (role == 'ROLE_ADMIN') {
+        if (adminrole) {
             role = USER_ROLES.admin;
-        }
-        if (role == 'ROLE_USER') {
+        } else if (smerole) {
+            role = USER_ROLES.sme;
+        } else if (userrole) {
             role = USER_ROLES.public;
         }
     }
@@ -235,7 +239,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         var token = JSON.parse(getAccessToken());
         return $q(function(resolve, reject) {
             var req = {
-                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/user" + userData.email + "/role/" + userData.role + "",
+                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/user/" + userData.email + "/role/" + userData.role + "",
                 method: 'PATCH',
                 data: {
                     "accessToken": token.accessToken,
