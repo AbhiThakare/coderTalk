@@ -85,7 +85,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES, URL
         var token = 'Basic ' + window.btoa(name + ':' + pw);
         return $q(function(resolve, reject) {
             var req = {
-                url: URL.url+"/authenticate",
+                url: URL.url + "/authenticate",
                 method: 'POST',
                 headers: {
                     'Authorization': token
@@ -110,7 +110,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES, URL
         var token = JSON.parse(getAccessToken());
         return $q(function(resolve, reject) {
             var req = {
-                url: URL.url+ token.email + "/pwd",
+                url: URL.url + token.email + "/pwd",
                 method: 'PATCH',
                 params: {
                     newPwd: userData.newPass
@@ -294,7 +294,9 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES, URL
         changeRole: changeRole,
         addExpertise: addExpertise
     };
-}).service('DashboardService', function($q, $http, USER_ROLES, URL) {
+}).service('DashboardService', function($q, $http, $filter, USER_ROLES, URL) {
+    var today = $filter('date')(new Date(), 'yyyy-MM-dd');
+
     function getAccessToken() {
         var LOCAL_DATA = 'yourData';
         var token = window.localStorage.getItem(LOCAL_DATA);
@@ -309,12 +311,12 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES, URL
     var broadcast = function() {
         return $q(function(resolve, reject) {
             var req = {
-                url: URL.urlChannels+"broadcast/messages",
+                url: URL.urlChannels + "broadcast/messages",
                 method: 'GET',
                 headers: {
                     'Authorization': getHeaderToken(),
                     'fromDate': '2016-08-01T00:00:00.000+0530',
-                    'toDate': '2016-08-23T00:00:00.000+0530',
+                    'toDate': today + 'T24:00:00.000+0530',
                     'page': 0
                 }
             }
@@ -332,12 +334,12 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES, URL
     var information = function() {
         return $q(function(resolve, reject) {
             var req = {
-                url: URL.urlChannels+"information/messages",
+                url: URL.urlChannels + "information/messages",
                 method: 'GET',
                 headers: {
                     'Authorization': getHeaderToken(),
                     'fromDate': '2016-08-01T00:00:00.000+0530',
-                    'toDate': '2016-08-23T00:00:00.000+0530',
+                    'toDate': today + 'T24:00:00.000+0530',
                     'page': 0
                 }
             }
@@ -355,12 +357,12 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES, URL
     var knowledge = function() {
         return $q(function(resolve, reject) {
             var req = {
-                url: URL.urlChannels+"knowledge/messages",
+                url: URL.urlChannels + "knowledge/messages",
                 method: 'GET',
                 headers: {
                     'Authorization': getHeaderToken(),
                     'fromDate': '2016-08-01T00:00:00.000+0530',
-                    'toDate': '2016-08-23T00:00:00.000+0530',
+                    'toDate': today + 'T24:00:00.000+0530',
                     'page': 0
                 }
             }
@@ -378,12 +380,12 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES, URL
     var sos = function() {
         return $q(function(resolve, reject) {
             var req = {
-                url: URL.urlChannels+"sos/messages",
+                url: URL.urlChannels + "sos/messages",
                 method: 'GET',
                 headers: {
                     'Authorization': getHeaderToken(),
                     'fromDate': '2016-08-01T00:00:00.000+0530',
-                    'toDate': '2016-08-23T00:00:00.000+0530',
+                    'toDate': today + 'T24:00:00.000+0530',
                     'page': 0
                 }
             }
@@ -401,7 +403,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES, URL
     var like = function(messageId) {
         return $q(function(resolve, reject) {
             var req = {
-                url: URL.urlChannels+"messages/" + messageId + "/like",
+                url: URL.urlChannels + "messages/" + messageId + "/like",
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json;charset=UTF-8',
@@ -430,7 +432,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES, URL
                     "message": data.message,
                     "likes": 1,
                     "author": token.email,
-                    "date": "2016-04-15T00:00:00Z",
+                    "date": today + "T00:00:00Z",
                     "tags": ["java", "javascript"]
                 },
                 headers: {
