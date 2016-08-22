@@ -179,7 +179,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES, URL
         }
         return $q(function(resolve, reject) {
             var req = {
-                url: URL.url,
+                url: 'http://169.44.124.140:8091/codertalk/user',
                 method: 'PUT',
                 data: {
                     "fname": userData.fname,
