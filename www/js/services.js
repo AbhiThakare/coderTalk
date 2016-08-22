@@ -1,4 +1,4 @@
-angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
+angular.module('app').service('AuthService', function($q, $http, USER_ROLES, URL) {
     var LOCAL_TOKEN_KEY = 'yourTokenKey';
     var LOCAL_DATA = 'yourData';
     var TOKEN = 'token';
@@ -61,7 +61,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
     var search = function(userData) {
         return $q(function(resolve, reject) {
             var req = {
-                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/user",
+                url: URL.url,
                 method: 'GET',
                 params: {
                     any: userData
@@ -85,7 +85,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         var token = 'Basic ' + window.btoa(name + ':' + pw);
         return $q(function(resolve, reject) {
             var req = {
-                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/user/authenticate",
+                url: URL.url+"/authenticate",
                 method: 'POST',
                 headers: {
                     'Authorization': token
@@ -110,7 +110,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         var token = JSON.parse(getAccessToken());
         return $q(function(resolve, reject) {
             var req = {
-                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/user/" + token.email + "/pwd",
+                url: URL.url+ token.email + "/pwd",
                 method: 'PATCH',
                 params: {
                     newPwd: userData.newPass
@@ -157,7 +157,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
             return role;
         }
     };
-}).service('SignupService', function($q, $http, USER_ROLES) {
+}).service('SignupService', function($q, $http, USER_ROLES, URL) {
     function getAccessToken() {
         var LOCAL_DATA = 'yourData';
         var token = window.localStorage.getItem(LOCAL_DATA);
@@ -179,7 +179,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         }
         return $q(function(resolve, reject) {
             var req = {
-                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/user",
+                url: URL.url,
                 method: 'PUT',
                 data: {
                     "fname": userData.fname,
@@ -209,7 +209,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         return $q(function(resolve, reject) {
             var token = JSON.parse(getAccessToken());
             var req = {
-                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/user/",
+                url: URL.url,
                 method: 'PATCH',
                 data: {
                     "fname": userData.fname,
@@ -239,7 +239,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         var token = JSON.parse(getAccessToken());
         return $q(function(resolve, reject) {
             var req = {
-                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/user/" + userData.email + "/role/" + userData.role + "",
+                url: URL.url + userData.email + "/role/" + userData.role + "",
                 method: 'PATCH',
                 data: {
                     "accessToken": token.accessToken,
@@ -265,7 +265,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         return $q(function(resolve, reject) {
             var token = JSON.parse(getAccessToken());
             var req = {
-                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/user/" + userData.email + "/expertise/" + userData.expertise + "",
+                url: URL.url + userData.email + "/expertise/" + userData.expertise + "",
                 method: 'PATCH',
                 data: {
                     "accessToken": token.accessToken,
@@ -294,7 +294,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         changeRole: changeRole,
         addExpertise: addExpertise
     };
-}).service('DashboardService', function($q, $http, USER_ROLES) {
+}).service('DashboardService', function($q, $http, USER_ROLES, URL) {
     function getAccessToken() {
         var LOCAL_DATA = 'yourData';
         var token = window.localStorage.getItem(LOCAL_DATA);
@@ -309,7 +309,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
     var broadcast = function() {
         return $q(function(resolve, reject) {
             var req = {
-                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/channels/broadcast/messages",
+                url: URL.urlChannels+"broadcast/messages",
                 method: 'GET',
                 headers: {
                     'Authorization': getHeaderToken(),
@@ -332,7 +332,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
     var information = function() {
         return $q(function(resolve, reject) {
             var req = {
-                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/channels/information/messages",
+                url: URL.urlChannels+"information/messages",
                 method: 'GET',
                 headers: {
                     'Authorization': getHeaderToken(),
@@ -355,7 +355,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
     var knowledge = function() {
         return $q(function(resolve, reject) {
             var req = {
-                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/channels/knowledge/messages",
+                url: URL.urlChannels+"knowledge/messages",
                 method: 'GET',
                 headers: {
                     'Authorization': getHeaderToken(),
@@ -378,7 +378,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
     var sos = function() {
         return $q(function(resolve, reject) {
             var req = {
-                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/channels/sos/messages",
+                url: URL.urlChannels+"sos/messages",
                 method: 'GET',
                 headers: {
                     'Authorization': getHeaderToken(),
@@ -401,7 +401,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
     var like = function(messageId) {
         return $q(function(resolve, reject) {
             var req = {
-                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/channels/messages/" + messageId + "/like",
+                url: URL.urlChannels+"messages/" + messageId + "/like",
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json;charset=UTF-8',
@@ -423,7 +423,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         return $q(function(resolve, reject) {
             var token = JSON.parse(getAccessToken());
             var req = {
-                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/channels/" + data.channels + "/message",
+                url: URL.urlChannels + data.channels + "/message",
                 method: 'PUT',
                 data: {
                     "title": data.subject,
@@ -457,7 +457,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         postMessage: postMessage,
         like: like
     };
-}).factory('ProfileService', function($q, $http, USER_ROLES) {
+}).factory('ProfileService', function($q, $http, USER_ROLES, URL) {
     var getData = function() {
         var LOCAL_DATA = 'yourData';
         var token = window.localStorage.getItem(LOCAL_DATA);
@@ -473,7 +473,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES) {
         return $q(function(resolve, reject) {
             var token = JSON.parse(getData());
             var req = {
-                url: "http://inmbz2239.in.dst.ibm.com:8091/codertalk/user/" + token.email + "/phone/" + phoneNo,
+                url: URL.url + token.email + "/phone/" + phoneNo,
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json;charset=UTF-8',
