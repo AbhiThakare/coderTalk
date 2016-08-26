@@ -1,44 +1,45 @@
 <ion-view style="" class=" " id="page12" title="Search User">
-    <ion-content class="has-header" padding="true">
-    	<form class="list " name="searchform" class="css-form" novalidate id="searchUser-form6" ng-submit="searchform.$valid && search(searchinput)">
-            <label id="searchUser-input14" class="item item-input ">
-                <input placeholder="Search User" required=""  name="searchinput" type="text" ng-model="searchinput">
-            </label>
-            <div ng-show="searchform.$submitted || searchform.searchinput.$touched">
-		      <div style="color:red;margin:5px;padding:5px;" ng-show="searchform.searchinput.$error.required">Please enter input to search.</div>
-		    </div>
-            <button class="button button-positive  button-block" id="searchUser-button15">SUBMIT</button>
-        </form>
-        <div style="height: 8px;" class="spacer"></div>
-        <div ng-show='showFilter && searchinput'>
-            <h4 id="searcResult" style="color:#000000;font-weight:400;text-align:left;" class=" ">Search Results</h4>        
-            <label id="searchUser-input14" class="item item-input ">
-                <input placeholder="Filter Result" type="text" ng-model="filterResult">
-            </label>
-            <div style="height: 8px;" class="spacer"></div>
-            Result are filter by: {{filterResult}} <BR>
-            <div style="height: 8px;" class="spacer"></div>
-            Sort - 
-            <button class="icon ion-android-arrow-dropup-circle" href="" ng-click="term='fname'"> </button> ---
-            <button class="icon ion-android-arrow-dropdown-circle" href="" ng-click="term='-fname'"> </button>
-            <div style="height: 20px;" class="spacer"></div>
-            <ion-list class=" " id="profile-list4" ng-repeat="userProfile in userProfiles|filter:filterResult|orderBy:term" ng-show='userProfile!==null && searchinput'>
-                <div class="item item-thumbnail-left item-avatar">
-                    <img ng-src="../www/img/user.png" src="../www/img/user.png">
-                    <h2 class="ng-binding">{{userProfile.fname}} {{userProfile.lname}}</h2>
-                </div>
-                <ion-item style="" id="profile-list-item10" class="item-icon-left item-icon-right  ">
-                    <i class="icon ion-iphone"></i>{{userProfile.phone}}
-                    <i class="icon ion-edit icon-accessory"></i>
-                </ion-item>
-                <ion-item style="" id="profile-list-item11" class="item-icon-left  ">
-                    <i class="icon ion-email"></i>{{userProfile.email}}</ion-item>
-                <ion-item style="" id="profile-list-item12" class="item-icon-left  ">
-                    <i class="icon ion-ionic"></i>Role: {{userProfile.roles}}</ion-item>
-                <ion-item style="" class="  " id="profile-list-item13">Area of excellence: {{userProfile.aoe[0]}}</ion-item>
-            </ion-list>
-        </div>
-    </ion-content>
+   <ion-content class="has-header" padding="true">
+      <form class="list " name="searchform" class="css-form" novalidate id="searchUser-form6" ng-submit="searchform.$valid && search(searchinput)">
+         <label id="searchUser-input14" class="item item-input ">
+         <input placeholder="Search User" required=""  name="searchinput" type="text" ng-model="searchinput">
+         </label>
+         <div ng-show="searchform.$submitted || searchform.searchinput.$touched">
+            <div style="color:red;margin:5px;padding:5px;" ng-show="searchform.searchinput.$error.required">Please enter input to search.</div>
+         </div>
+         <button class="button button-positive  button-block" id="searchUser-button15">SUBMIT</button>
+      </form>
+      <div style="height: 8px;" class="spacer"></div>
+      <div ng-show='showFilter && searchinput'>
+         <h4 id="searcResult" style="color:#000000;font-weight:400;text-align:left;" class=" ">Search Results</h4>
+         <label id="searchUser-input14" class="item item-input ">
+         <input placeholder="Filter Result" type="text" ng-model="filterResult">
+         </label>
+         <div style="height: 8px;" class="spacer"></div>
+         Result are filter by: {{filterResult}} <BR>
+         <div style="height: 8px;" class="spacer"></div>
+         Sort - 
+         <button class="icon ion-android-arrow-dropup-circle" href="" ng-click="term='fname'"> </button> ---
+         <button class="icon ion-android-arrow-dropdown-circle" href="" ng-click="term='-fname'"> </button>
+         <div style="height: 20px;" class="spacer"></div>
+         <ion-list class=" " id="profile-list4" ng-repeat="userProfile in userProfiles|filter:filterResult|orderBy:term" ng-show='userProfile!==null && searchinput'>
+            <div class="item item-thumbnail-left item-avatar">
+               <img ng-src="../www/img/user.png" src="../www/img/user.png">
+               <h2 class="ng-binding">{{userProfile.fname}} {{userProfile.lname}}</h2>
+            </div>
+            <ion-item style="" id="profile-list-item10" class="item-icon-left item-icon-right  ">
+               <i class="icon ion-iphone"></i>{{userProfile.phone}}
+               <i class="icon ion-edit icon-accessory"></i>
+            </ion-item>
+            <ion-item style="" id="profile-list-item11" class="item-icon-left  ">
+               <i class="icon ion-email"></i>{{userProfile.email}}
+            </ion-item>
+            <ion-item style="" id="profile-list-item12" class="item-icon-left  ">
+               <i class="icon ion-ionic"></i>Role: {{userProfile.roles}}
+            </ion-item>
+            <ion-item style="" class="  " id="profile-list-item13">Area of excellence: {{userProfile.aoe[0]}}</ion-item>
+         </ion-list>
+      </div>
+   </ion-content>
 </ion-view>
-
 <tr <%(true)?style="color:red;": %> > </tr>

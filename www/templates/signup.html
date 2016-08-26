@@ -1,53 +1,53 @@
 <ion-view style="" class=" " id="page17" title="Signup">
-    <ion-content padding="true" class="manual-ios-statusbar-padding" scroll="true">
-        <h2 id="signup-heading2" style="color:#000000;font-weight:400;text-align:center;" class=" ">Sign-up</h2>
-         <form class="list " name="signupform" class="css-form" novalidate id="signup-form4" ng-submit="signupform.$valid && signup(data)">
-            <ion-list id="signup-list5" class=" ">
-                <label class="item item-input " id="signup-input4" name="firstname">
-                    <span class="input-label">First name</span>
-                    <input type="text" placeholder="" required=""  name="firstname" ng-model="data.fname">
-                </label>
-                <div ng-show="signupform.$submitted || signupform.firstname.$touched">
-			      <div style="color:red;margin:5px;padding:5px;" ng-show="signupform.firstname.$error.required">Please enter first name.</div>
-			    </div>
-                <label class="item item-input " id="signup-input7">
-                    <span class="input-label">Last name</span>
-                    <input type="text" placeholder="" required=""  name="lastname" ng-model="data.lname">
-                </label>
-                <div ng-show="signupform.$submitted || signupform.lastname.$touched">
-			      <div style="color:red;margin:5px;padding:5px;" ng-show="signupform.lastname.$error.required">Please enter last name.</div>
-			    </div>
-                <label class="item item-input " id="signup-input5" name="email">
-                    <span class="input-label">Email</span>
-                    <input type="email" placeholder="" required=""  name="email" ng-model="data.email">
-                </label>
-                <div ng-show="signupform.$submitted || signupform.email.$touched">
-			      <div style="color:red;margin:5px;padding:5px;" ng-show="signupform.email.$error.required">Please enter email.</div>
-			      <div style="color:red;margin:5px;padding:5px;" ng-show="signupform.email.$error.email">Please enter valid email.</div>
-			    </div>
-                <label class="item item-input " id="signup-input8" name="phoneNo">
-                    <span class="input-label">Phone No</span>
-                    <input type="tel" placeholder="" required=""  name="phoneNo" ng-model="data.phoneNo">
-                </label>
-                <div ng-show="signupform.$submitted || signupform.phoneNo.$touched">
-			      <div style="color:red;margin:5px;padding:5px;" ng-show="signupform.phoneNo.$error.required">Please enter phone no.</div>
-			    </div>
-                <label class="item item-input " id="signup-input6" name="password">
-                    <span class="input-label">Password</span>
-                    <input type="password" placeholder="" required=""  name="password" ng-model="data.password">
-                </label>
-                <div ng-show="signupform.$submitted || signupform.password.$touched">
-			      <div style="color:red;margin:5px;padding:5px;" ng-show="signupform.password.$error.required">Please enter password.</div>
-			    </div>
-                <label class="item item-input " id="signup-input9" name="confirmPass">
-                    <span class="input-label">Confirm Password</span>
-                    <input type="password" placeholder="" required=""  name="confpassword" ng-model="data.confirmpass">
-                </label>
-                <div ng-show="signupform.$submitted || signupform.confpassword.$touched">
-			      <div style="color:red;margin:5px;padding:5px;" ng-show="signupform.confpassword.$error.required">Please enter password.</div>
-			    </div>
-            </ion-list>
-            <button class="button button-block button-positive" type="submit" id="login-button13">Signup</button>
-        </form>
-    </ion-content>
+   <ion-content padding="true" class="manual-ios-statusbar-padding" scroll="true">
+      <h2 id="signup-heading2" style="color:#000000;font-weight:400;text-align:center;" class=" ">Sign-up</h2>
+      <form class="list " name="signupform" class="css-form" novalidate id="signup-form4" ng-submit="signupform.$valid && signup(data)">
+         <ion-list id="signup-list5" class=" ">
+            <label class="item item-input " id="signup-input4" name="firstname">
+            <span class="input-label">First name</span>
+            <input type="text" placeholder="" required=""  name="firstname" ng-model="data.fname">
+            </label>
+            <div ng-show="signupform.$submitted || signupform.firstname.$touched">
+               <div style="color:red;margin:5px;padding:5px;" ng-show="signupform.firstname.$error.required">Please enter first name.</div>
+            </div>
+            <label class="item item-input " id="signup-input7">
+            <span class="input-label">Last name</span>
+            <input type="text" placeholder="" required=""  name="lastname" ng-model="data.lname">
+            </label>
+            <div ng-show="signupform.$submitted || signupform.lastname.$touched">
+               <div style="color:red;margin:5px;padding:5px;" ng-show="signupform.lastname.$error.required">Please enter last name.</div>
+            </div>
+            <label class="item item-input " id="signup-input5" name="email">
+            <span class="input-label">Email</span>
+            <input type="email" placeholder="" required=""  name="email" ng-model="data.email">
+            </label>
+            <div ng-show="signupform.$submitted || signupform.email.$touched">
+               <div style="color:red;margin:5px;padding:5px;" ng-show="signupform.email.$error.required">Please enter email.</div>
+               <div style="color:red;margin:5px;padding:5px;" ng-show="signupform.email.$error.email">Please enter valid email.</div>
+            </div>
+            <label class="item item-input " id="signup-input8" name="phoneNo">
+            <span class="input-label">Phone No</span>
+            <input type="tel" placeholder="" required=""  name="phoneNo" ng-model="data.phoneNo">
+            </label>
+            <div ng-show="signupform.$submitted || signupform.phoneNo.$touched">
+               <div style="color:red;margin:5px;padding:5px;" ng-show="signupform.phoneNo.$error.required">Please enter phone no.</div>
+            </div>
+            <label class="item item-input " id="signup-input6" name="password">
+            <span class="input-label">Password</span>
+            <input type="password" placeholder="" required=""  name="password" ng-model="data.password">
+            </label>
+            <div ng-show="signupform.$submitted || signupform.password.$touched">
+               <div style="color:red;margin:5px;padding:5px;" ng-show="signupform.password.$error.required">Please enter password.</div>
+            </div>
+            <label class="item item-input " id="signup-input9" name="confirmPass">
+            <span class="input-label">Confirm Password</span>
+            <input type="password" placeholder="" required=""  name="confpassword" ng-model="data.confirmpass">
+            </label>
+            <div ng-show="signupform.$submitted || signupform.confpassword.$touched">
+               <div style="color:red;margin:5px;padding:5px;" ng-show="signupform.confpassword.$error.required">Please enter password.</div>
+            </div>
+         </ion-list>
+         <button class="button button-block button-positive" type="submit" id="login-button13">Signup</button>
+      </form>
+   </ion-content>
 </ion-view>

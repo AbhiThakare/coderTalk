@@ -1,31 +1,31 @@
 <ion-view title="Login" hide-nav-bar="true" id="page16" style="background-color:#;" class=" ">
-  <ion-content class="has-header" scroll="false" padding="true">
-    <h2 id="signup-heading2" style="color:#000000;font-weight:400;text-align:center;" class=" ">Login</h2>
-    <div style="height: 40px;" class="spacer"></div>
-        <form class="list " name="loginform" class="css-form" novalidate id="login-form7" ng-submit="loginform.$valid && login(data)">
-            <ion-list class=" " id="login-list5">
-                <label id="login-input15" class="item item-input ">
-                    <span class="input-label">Username</span>
-                    <input placeholder="" autocapitalize="none" required=""  type="email" ng-model="data.username" name="username">
-                </label>
-			    <div ng-show="loginform.$submitted || loginform.username.$touched">
-			      <div style="color:red;margin:5px;padding:5px;" ng-show="loginform.username.$error.required">Please enter User name.</div>
-			      <div style="color:red;margin:5px;padding:5px;" ng-show="loginform.username.$error.email">Please enter valid email.</div>
-			    </div>
-                <label id="login-input16" class="item item-input ">
-                    <span class="input-label">Password</span>
-                    <input placeholder="" required=""  type="password" ng-model="data.password" name="password">
-                </label>
-                <div ng-show="loginform.$submitted || loginform.password.$touched">
-			      <div style="color:red;margin:5px;padding:5px;" ng-show="loginform.password.$error.required">Please enter Password.</div>
-			    </div>
-            </ion-list>
-            <div style="height: 40px;" class="spacer"></div>
-            <input  class="button button-block button-positive" type="submit" id="login-button13" value="Login"/>
-            <a ui-sref="signup" id="login-button2" class=" button button-positive  button-block button-clear ">Or create an account</a>
-        </form>
-        <ion-footer-bar align-title="center" class="bar">
-			<h5 class="title title-center"  style="font-size:10px;" >Copyright &#169; IBM India Pvt. Ltd 2016</h5>
-		</ion-footer-bar>
-    </ion-content>
+   <ion-content class="has-header" scroll="false" padding="true">
+      <h2 id="signup-heading2" style="color:#000000;font-weight:400;text-align:center;" class=" ">Login</h2>
+      <div style="height: 40px;" class="spacer"></div>
+      <form class="list " name="loginform" class="css-form" novalidate id="login-form7" ng-submit="loginform.$valid && login(data)">
+         <ion-list class=" " id="login-list5">
+            <label id="login-input15" class="item item-input ">
+            <span class="input-label">Username</span>
+            <input placeholder="" autocapitalize="none" required=""  type="email" ng-model="data.username" name="username">
+            </label>
+            <div ng-show="loginform.$submitted || loginform.username.$touched">
+               <div style="color:red;margin:5px;padding:5px;" ng-show="loginform.username.$error.required">Please enter User name.</div>
+               <div style="color:red;margin:5px;padding:5px;" ng-show="loginform.username.$error.email">Please enter valid email.</div>
+            </div>
+            <label id="login-input16" class="item item-input ">
+            <span class="input-label">Password</span>
+            <input placeholder="" required=""  type="password" ng-model="data.password" name="password">
+            </label>
+            <div ng-show="loginform.$submitted || loginform.password.$touched">
+               <div style="color:red;margin:5px;padding:5px;" ng-show="loginform.password.$error.required">Please enter Password.</div>
+            </div>
+         </ion-list>
+         <div style="height: 40px;" class="spacer"></div>
+         <input  class="button button-block button-assertive-900" type="submit" id="login-button13" value="Login"/>
+         <a ui-sref="signup" id="login-button2" class=" title title-center button button-positive  button-block button-clear ">Or create an account</a>
+      </form>
+      <ion-footer-bar align-title="center" class="bar">
+         <h5 class="title title-center"  style="font-size:10px;" >Copyright &#169; IBM India Pvt. Ltd 2016</h5>
+      </ion-footer-bar>
+   </ion-content>
 </ion-view>

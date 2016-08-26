@@ -1,57 +1,56 @@
 <ion-view style="" class=" " id="page5" title="SOS">
-	<ion-nav-buttons side="right">
-		<button class="button icon-left ion-android-search button-stable" ng-click="search()"></button>
-		<button class="button icon-left ion-android-refresh button-stable" ng-click="refresh()"></button>
-		<a ui-sref="addNewItem">
-            <button class="button icon-left ion-ios-plus-outline button-stable" ng-click="" id="searchUser-button15"></button>
-        </a>
-    	<button class="button icon-left ion-log-out button-stable" ng-click="logout()"></button>
-  	</ion-nav-buttons>
-    <ion-content class="has-header" padding="true">
-    	<ion-refresher on-refresh="refresh()"></ion-refresher>
-        <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);" ng-show='sosDatas!==undefined'>
-            <div class="list card animated bounceInUp" ng-repeat="sosData in sosDatas">
-                <div class="item item-thumbnail-left item-avatar">
-                    <img ng-src="../www/img/user.png" src="../www/img/user.png">
-                    <p class="ng-binding">{{sosData.date | date:'dd/MM/yyyy @ h:mma'}}</p>
-                    <h2 class="ng-binding">{{sosData.title}}</h2>
-                    <p class="ng-binding">{{sosData.author}}</p>
-                </div>
-                <div class="item item-body">
-                    <p class="ng-binding">
-                        {{sosData.message}}
-                    </p>
-                </div>
-                <div class="item tabs tabs-secondary tabs-icon-left">
-                    <a class="tab-item" ng-class="{ 'activated'   : sosData.likes > 0 }" ng-click="like(sosData.uuid)">
-                        <i class="icon ion-thumbsup"></i>
-                        Like {{sosData.likes}}
-                    </a>
-                    <a class="tab-item" ng-click="addComment(sosData, 'sos')">
-                        <i class="icon ion-chatbox"></i>
-                        Reply
-                    </a>
-                </div>
-                <div class="list card"  ng-show='sosData.threadId===undefined'">
-              	<ion-item  class="item-stable"><span>No Comments Yet</span></ion-item>
-             </div>
-              <div class="list card"  ng-show='sosData.threadId!==undefined' ng-click="(!isGroupShown(sosData.threadId)) ? getComment(sosData.threadId) : toggle(sosData.threadId)">
-	              	<ion-item  class="item-stable">
-	              <i class="icon" ng-class="isGroupShown(sosData.threadId) ? 'ion-minus' : 'ion-plus'"></i> 
-	              <span>Comments</span>
-	          	</ion-item>
-				<div class="item item-body item-accordion" ng-show='isGroupShown(sosData.threadId) && commentsDatas!==undefined && sosData.threadId === comments.threadId' ng-repeat="comments in commentsDatas" >  
-				   <p class="ng-binding">
-				        {{comments.message}} <br> By - {{comments.author}}
-				   </p>
-				</div>
-	        </div>
+  <ion-nav-buttons side="right">
+	   <div class="paddingTop">
+	      <i class="icon ion-android-search" ng-click="search()"></i>  &nbsp;&nbsp;
+	      <i class="icon ion-android-refresh " ng-click="refresh()"></i> &nbsp;&nbsp;
+	      <i class="icon ion-ios-plus-outline" ui-sref="addNewItem"></i> &nbsp;&nbsp;
+	      <i class="icon ion-log-out" ng-click="logout()"></i> &nbsp;&nbsp;
+	   </div>
+   </ion-nav-buttons>
+   <ion-content class="has-header" padding="true">
+      <ion-refresher on-refresh="refresh()"></ion-refresher>
+      <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);" ng-show='sosDatas!==undefined'>
+         <div class="list card animated bounceInUp" ng-repeat="sosData in sosDatas">
+            <div class="item item-thumbnail-left item-avatar">
+               <img ng-src="../www/img/user.png" src="../www/img/user.png">
+               <p class="ng-binding">{{sosData.date | date:'dd/MM/yyyy @ h:mma'}}</p>
+               <h2 class="ng-binding">{{sosData.title}}</h2>
+               <p class="ng-binding">{{sosData.author}}</p>
             </div>
-        </div>
-    	<ion-list class=" " id="profile-list4" ng-show='sosDatas===undefined'>
-            <ion-item style="" id="profile-list-item12" class="item-icon-left  ">
-                <i class="icon ion-android-alert"></i>Nothing to display
-            </ion-item>
-        </ion-list>
-    </ion-content>
+            <div class="item item-body">
+               <p class="ng-binding">
+                  {{sosData.message}}
+               </p>
+            </div>
+            <div class="item tabs tabs-secondary tabs-icon-left">
+               <a class="tab-item stable-bg assertive" ng-class="{ 'activated'   : sosData.likes > 0 }" ng-click="like(sosData.uuid)">
+               <i class="icon ion-heart"></i>
+               Like {{sosData.likes}}
+               </a>
+               <a class="tab-item stable-bg positive" ng-click="addComment(sosData, 'sos')">
+               <i class="icon ion-chatbubbles"></i>
+               Reply
+               </a>
+               <a class="tab-item stable-bg balanced" ng-click="(!isGroupShown(sosData.threadId)) ? getComment(sosData.threadId) : toggle(sosData.threadId)">
+               <i class="icon" ng-class="isGroupShown(sosData.threadId) ?'ion-chevron-up' : 'ion-arrow-expand'"></i> Comments
+               </a>
+            </div>
+            <div class="list card"  ng-show='isGroupShown(sosData.threadId)'>
+               <ion-item  class="item-stable">
+                  <span>Comments</span>
+               </ion-item>
+               <div class="item item-body item-accordion" ng-show='isGroupShown(sosData.threadId) && commentsDatas!==undefined && sosData.threadId === comments.threadId' ng-repeat="comments in commentsDatas" >
+                  <p class="ng-binding">
+                     {{comments.message}} <br> By - {{comments.author}}
+                  </p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <ion-list class=" " id="profile-list4" ng-show='sosDatas===undefined'>
+         <ion-item style="" id="profile-list-item12" class="item-icon-left  ">
+            <i class="icon ion-android-alert"></i>Nothing to display
+         </ion-item>
+      </ion-list>
+   </ion-content>
 </ion-view>

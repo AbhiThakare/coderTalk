@@ -1,20 +1,20 @@
 <ion-view style="" class=" " id="page11" title="Add Expertise">
-    <ion-content class="has-header" padding="true">
-    	<form class="list " name="addexpertform" class="css-form" novalidate id="addExpertise-form5" ng-submit="addexpertform.$valid && addExpertise(data)">
-            <label id="addExpertise-input12" class="item item-input ">
-                <input placeholder="Add Expertise" required=""  name="experties" type="text" ng-model="data.expertise">
-            </label>
-            <div ng-show="addexpertform.$submitted || addexpertform.experties.$touched">
-		      <div style="color:red;margin:5px;padding:5px;" ng-show="addexpertform.experties.$error.required">Please enter experties.</div>
-		    </div>
-            <label id="addExpertise-input13" class="item item-input ">
-                <input placeholder="Email" required=""  name="email" type="email" ng-model="data.email">
-            </label>
-            <div ng-show="addexpertform.$submitted || addexpertform.email.$touched">
-		      <div style="color:red;margin:5px;padding:5px;" ng-show="addexpertform.email.$error.required">Please enter email.</div>
-		      <div style="color:red;margin:5px;padding:5px;" ng-show="addexpertform.email.$error.email">Please enter valid email.</div>
-		    </div>
-	        <button class="button button-block button-positive" id="addExpertise-button14">ADD EXPERTISE</button>
-	   	</form>
-    </ion-content>
+   <ion-content class="has-header" padding="true">
+      <form class="list " name="addexpertform" class="css-form" novalidate id="addExpertise-form5" ng-submit="addexpertform.$valid && addExpertise(data)">
+         <label id="addExpertise-input12" class="item item-input ">
+         <input placeholder="Add Expertise" required=""  name="experties" type="text" ng-model="data.expertise">
+         </label>
+         <div ng-show="addexpertform.$submitted || addexpertform.experties.$touched">
+            <div style="color:red;margin:5px;padding:5px;" ng-show="addexpertform.experties.$error.required">Please enter experties.</div>
+         </div>
+         <label id="addExpertise-input13" class="item item-input ">
+         <input placeholder="Email" required=""  name="email" type="email" ng-model="data.email">
+         </label>
+         <div ng-show="addexpertform.$submitted || addexpertform.email.$touched">
+            <div style="color:red;margin:5px;padding:5px;" ng-show="addexpertform.email.$error.required">Please enter email.</div>
+            <div style="color:red;margin:5px;padding:5px;" ng-show="addexpertform.email.$error.email">Please enter valid email.</div>
+         </div>
+         <button class="button button-block button-positive" id="addExpertise-button14">ADD EXPERTISE</button>
+      </form>
+   </ion-content>
 </ion-view>
