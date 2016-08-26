@@ -97,7 +97,7 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
         $ionicLoading.hide();
         var alertPopup = $ionicPopup.alert({
             title: 'Update Broadcast Failed!',
-            template: 'There was some problem with server.'
+            template: err.data.message
         });
     });
     $scope.logout = function() {
@@ -120,13 +120,71 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
             $ionicLoading.hide();
             var alertPopup = $ionicPopup.alert({
                 title: 'Like Failed!',
-                template: 'There was some problem with server.'
+                template: err.data.message
             });
         });
     };
     $scope.refresh = function() {
         $state.go('tabs.broadcast', {}, {
             reload: true
+        });
+    };
+    $scope.addComment = function(messagedata, channel) {
+        $ionicPopup.prompt({
+            title: 'Add Reply',
+            inputType: 'text',
+            inputPlaceholder: 'Please add Reply',
+            maxLength: 50,
+            okText: 'Post'
+        }).then(function(res) {
+            if (res) {
+                $ionicLoading.show({
+                    templateUrl: "templates/loading.html"
+                });
+                DashboardService.addComment(res, messagedata, channel).then(function(data) {
+                    $ionicLoading.hide();
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Reply Posted',
+                        template: 'Your reply posted successfuly'
+                    });
+                }, function(err) {
+                    $ionicLoading.hide();
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Reply post Failed!',
+                        template: err.data.message
+                    });
+                });
+            }
+        });
+    };
+    $scope.isGroupShown = function(messageUUID) {
+        return $scope.shownGroup === messageUUID;
+    };
+    $scope.toggle = function(messageUUID){
+    	if ($scope.isGroupShown(messageUUID)) {
+            $scope.shownGroup = null;
+        } else {
+            $scope.shownGroup = messageUUID;
+        }
+    };
+    $scope.getComment = function(messageUUID) {
+        if ($scope.isGroupShown(messageUUID)) {
+            $scope.shownGroup = null;
+        } else {
+            $scope.shownGroup = messageUUID;
+        }
+        $ionicLoading.show({
+            templateUrl: "templates/loading.html"
+        });
+        DashboardService.getComments(messageUUID).then(function(commentsData) {
+            $ionicLoading.hide();
+            $scope.commentsDatas = commentsData.data.response;
+        }, function(err) {
+            $ionicLoading.hide();
+            var alertPopup = $ionicPopup.alert({
+                title: 'Get reply Failed!',
+                template: err.data.message
+            });
         });
     };
 }).controller('knowledgeCtrl', function($scope, $state, $ionicLoading, $ionicPopup, DashboardService, AuthService) {
@@ -140,7 +198,7 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
         $ionicLoading.hide();
         var alertPopup = $ionicPopup.alert({
             title: 'Update Knowedge Failed!',
-            template: 'There was some problem with server.'
+            template: err.data.message
         });
     });
     $scope.logout = function() {
@@ -163,7 +221,7 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
             $ionicLoading.hide();
             var alertPopup = $ionicPopup.alert({
                 title: 'Like Failed!',
-                template: 'There was some problem with server.'
+                template: err.data.message
             });
         });
     };
@@ -177,6 +235,64 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
             reload: true
         });
     };
+    $scope.addComment = function(messagedata, channel) {
+        $ionicPopup.prompt({
+            title: 'Add Reply',
+            inputType: 'text',
+            inputPlaceholder: 'Please add Reply',
+            maxLength: 50,
+            okText: 'Post'
+        }).then(function(res) {
+            if (res) {
+                $ionicLoading.show({
+                    templateUrl: "templates/loading.html"
+                });
+                DashboardService.addComment(res, messagedata, channel).then(function(data) {
+                    $ionicLoading.hide();
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Reply Posted',
+                        template: 'Your reply posted successfuly'
+                    });
+                }, function(err) {
+                    $ionicLoading.hide();
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Reply Failed!',
+                        template: err.data.message
+                    });
+                });
+            }
+        });
+    };
+    $scope.isGroupShown = function(messageUUID) {
+        return $scope.shownGroup === messageUUID;
+    };
+    $scope.toggle = function(messageUUID){
+    	if ($scope.isGroupShown(messageUUID)) {
+            $scope.shownGroup = null;
+        } else {
+            $scope.shownGroup = messageUUID;
+        }
+    };
+    $scope.getComment = function(messageUUID) {
+        if ($scope.isGroupShown(messageUUID)) {
+            $scope.shownGroup = null;
+        } else {
+            $scope.shownGroup = messageUUID;
+        }
+        $ionicLoading.show({
+            templateUrl: "templates/loading.html"
+        });
+        DashboardService.getComments(messageUUID).then(function(commentsData) {
+            $ionicLoading.hide();
+            $scope.commentsDatas = commentsData.data.response;
+        }, function(err) {
+            $ionicLoading.hide();
+            var alertPopup = $ionicPopup.alert({
+                title: 'Get reply Failed!',
+                template: err.data.message
+            });
+        });
+    };
 }).controller('informationCtrl', function($scope, $state, $ionicLoading, $ionicPopup, DashboardService, AuthService) {
     $ionicLoading.show({
         templateUrl: "templates/loading.html"
@@ -188,7 +304,7 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
         $ionicLoading.hide();
         var alertPopup = $ionicPopup.alert({
             title: 'Update Information Failed!',
-            template: 'There was some problem with server.'
+            template: err.data.message
         });
     });
     $scope.logout = function() {
@@ -211,13 +327,71 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
             $ionicLoading.hide();
             var alertPopup = $ionicPopup.alert({
                 title: 'Like Failed!',
-                template: 'There was some problem with server.'
+                template: err.data.message
             });
         });
     };
     $scope.refresh = function() {
         $state.go('tabs.information', {}, {
             reload: true
+        });
+    };
+    $scope.addComment = function(messagedata, channel) {
+        $ionicPopup.prompt({
+            title: 'Add Reply',
+            inputType: 'text',
+            inputPlaceholder: 'Please add Reply',
+            maxLength: 50,
+            okText: 'Post'
+        }).then(function(res) {
+            if (res) {
+                $ionicLoading.show({
+                    templateUrl: "templates/loading.html"
+                });
+                DashboardService.addComment(res, messagedata, channel).then(function(data) {
+                    $ionicLoading.hide();
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Reply Posted',
+                        template: 'Your reply posted successfuly'
+                    });
+                }, function(err) {
+                    $ionicLoading.hide();
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Reply Failed!',
+                        template: err.data.message
+                    });
+                });
+            }
+        });
+    };
+    $scope.isGroupShown = function(messageUUID) {
+        return $scope.shownGroup === messageUUID;
+    };
+    $scope.toggle = function(messageUUID){
+    	if ($scope.isGroupShown(messageUUID)) {
+            $scope.shownGroup = null;
+        } else {
+            $scope.shownGroup = messageUUID;
+        }
+    };
+    $scope.getComment = function(messageUUID) {
+        if ($scope.isGroupShown(messageUUID)) {
+            $scope.shownGroup = null;
+        } else {
+            $scope.shownGroup = messageUUID;
+        }
+        $ionicLoading.show({
+            templateUrl: "templates/loading.html"
+        });
+        DashboardService.getComments(messageUUID).then(function(commentsData) {
+            $ionicLoading.hide();
+            $scope.commentsDatas = commentsData.data.response;
+        }, function(err) {
+            $ionicLoading.hide();
+            var alertPopup = $ionicPopup.alert({
+                title: 'Get reply Failed!',
+                template: err.data.message
+            });
         });
     };
 }).controller('sosCtrl', function($scope, $state, $ionicLoading, $ionicPopup, DashboardService, AuthService) {
@@ -231,7 +405,7 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
         $ionicLoading.hide();
         var alertPopup = $ionicPopup.alert({
             title: 'Update SOS Failed!',
-            template: 'There was some problem with server.'
+            template: err.data.message
         });
     });
     $scope.logout = function() {
@@ -254,13 +428,71 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
             $ionicLoading.hide();
             var alertPopup = $ionicPopup.alert({
                 title: 'Like Failed!',
-                template: 'There was some problem with server.'
+                template: err.data.message
             });
         });
     };
     $scope.refresh = function() {
         $state.go('tabs.sos', {}, {
             reload: true
+        });
+    };
+    $scope.addComment = function(messagedata, channel) {
+        $ionicPopup.prompt({
+            title: 'Add Reply',
+            inputType: 'text',
+            inputPlaceholder: 'Please add Reply',
+            maxLength: 50,
+            okText: 'Post'
+        }).then(function(res) {
+            if (res) {
+                $ionicLoading.show({
+                    templateUrl: "templates/loading.html"
+                });
+                DashboardService.addComment(res, messagedata, channel).then(function(data) {
+                    $ionicLoading.hide();
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Reply Posted',
+                        template: 'Your reply posted successfuly'
+                    });
+                }, function(err) {
+                    $ionicLoading.hide();
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Reply Failed!',
+                        template: err.data.message
+                    });
+                });
+            }
+        });
+    };
+    $scope.isGroupShown = function(messageUUID) {
+        return $scope.shownGroup === messageUUID;
+    };
+    $scope.toggle = function(messageUUID){
+    	if ($scope.isGroupShown(messageUUID)) {
+            $scope.shownGroup = null;
+        } else {
+            $scope.shownGroup = messageUUID;
+        }
+    };
+    $scope.getComment = function(messageUUID) {
+        if ($scope.isGroupShown(messageUUID)) {
+            $scope.shownGroup = null;
+        } else {
+            $scope.shownGroup = messageUUID;
+        }
+        $ionicLoading.show({
+            templateUrl: "templates/loading.html"
+        });
+        DashboardService.getComments(messageUUID).then(function(commentsData) {
+            $ionicLoading.hide();
+            $scope.commentsDatas = commentsData.data.response;
+        }, function(err) {
+            $ionicLoading.hide();
+            var alertPopup = $ionicPopup.alert({
+                title: 'Get reply Failed!',
+                template: err.data.message
+            });
         });
     };
 }).controller('profileCtrl', function($scope, $state, $ionicPopup, $ionicLoading, ProfileService) {
@@ -286,7 +518,7 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
                     $ionicLoading.hide();
                     var alertPopup = $ionicPopup.alert({
                         title: 'Update phone Failed!',
-                        template: 'There was some problem with server.'
+                        template: err.data.message
                     });
                 });
             }
@@ -308,7 +540,7 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
             $ionicLoading.hide();
             var alertPopup = $ionicPopup.alert({
                 title: 'Update Role Failed!',
-                template: 'There was some problem with server.'
+                template: err.data.message
             });
         });
     };
@@ -329,7 +561,7 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
             console.log(JSON.stringify(err));
             var alertPopup = $ionicPopup.alert({
                 title: 'Update Expertise Failed!',
-                template: 'There was some problem with server.'
+                template: err.data.message
             });
         });
     };
@@ -355,7 +587,7 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
             $ionicLoading.hide();
             var alertPopup = $ionicPopup.alert({
                 title: 'Search Failed!',
-                template: 'There was some problem with server.'
+                template: err.data.message
             });
         });
     };
@@ -379,16 +611,16 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
             $ionicLoading.hide();
             var alertPopup = $ionicPopup.alert({
                 title: 'Post Message Failed!',
-                template: 'There was some problem with server.'
+                template: err.data.message
             });
         });
     };
 }).controller('changePasswordCtrl', function($scope, $state, $ionicLoading, $ionicPopup, AuthService) {
-	$scope.changePassword = function(data) {
-		$ionicLoading.show({
+    $scope.changePassword = function(data) {
+        $ionicLoading.show({
             templateUrl: "templates/loading.html"
         });
-		AuthService.changePassword(data).then(function(postData) {
+        AuthService.changePassword(data).then(function(postData) {
             $ionicLoading.hide();
             var alertPopup = $ionicPopup.alert({
                 title: 'Password Changed Successful!',
@@ -400,9 +632,8 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
             $ionicLoading.hide();
             var alertPopup = $ionicPopup.alert({
                 title: 'Password Changed Failed!',
-                template: 'There was some problem with server.'
+                template: err.data.message
             });
         });
-	};
-	
+    };
 }).controller('creditsCtrl', function($scope) {}).controller('detailedPageCtrl', function($scope) {});
