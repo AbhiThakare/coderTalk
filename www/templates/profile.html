@@ -2,8 +2,8 @@
    <ion-content class="has-header" padding="true">
       <div class="hero animated bounceIn" style="background-image: url('../www/img/profile-bg.jpg');">
           <div class="content">
-              <div class="avatar" style="background-image: url('../www/img/daenerys.jpg');"></div>
-              <h3><a class="light">{{userProfile.fname}} {{userProfile.lname}}</a></h3>
+              <div class="avatar" style="background-image: url('../www/img/user.png');"></div>
+              <h3><a class="light">{{userProfile.fname | uppercase}} {{userProfile.lname | uppercase}}</a></h3>
           </div>
       </div>
       <ion-list class=" " id="profile-list4">
@@ -21,8 +21,7 @@
       </ion-list>
       <div style="width: 283px; height: 31px;" class="spacer"></div>
       <a ui-sref="changePassword">
-      <button class="button button-assertive-900  button-block" id="searchUser-button15">CHANGE PASSWORD</button>
+      	<button class="button button-assertive-900  button-block" id="searchUser-button15">CHANGE PASSWORD</button>
       </a>
    </ion-content>
-   
 </ion-view>

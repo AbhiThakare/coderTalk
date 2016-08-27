@@ -36,8 +36,9 @@ p {
 	background: #B71C1C !important;
 }
 
-.header-item {
+.title-left.header-item {
 	color: #fff !important;
+	left:35px !important;
 }
 
 .menu-open .bar.bar-header.expanded {

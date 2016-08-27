@@ -10,7 +10,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES, URL
    function loadUserCredentials() {
       var token = window.localStorage.getItem(LOCAL_TOKEN_KEY);
       if (token) {
-         var data = window.localStorage.getItem(LOCAL_DATA);
+         var data = JSON.parse(window.localStorage.getItem(LOCAL_DATA));
          useCredentials(token, data);
       }
    }
