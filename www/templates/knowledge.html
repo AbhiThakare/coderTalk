@@ -11,17 +11,17 @@
       <ion-refresher on-refresh="refresh()"></ion-refresher>
       <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);" ng-show='knowedgeDatas!==undefined'>
          <div class="list card animated bounceInUp" ng-repeat="knowedgeData in knowedgeDatas">
-            <div class="item item-thumbnail-left item-avatar">
-               <img ng-src="../www/img/user.png" src="../www/img/user.png">
-               <p class="ng-binding">{{knowedgeData.date | date:'dd/MM/yyyy @ h:mma'}}</p>
-               <h2 class="ng-binding">{{knowedgeData.title}}</h2>
-               <p class="ng-binding">{{knowedgeData.author}}</p>
-            </div>
-            <div class="item item-body">
-               <p class="ng-binding">
-                  {{knowedgeData.message}}
-               </p>
-            </div>
+            <div class="item item-avatar item-text-wrap in" style="transition-delay: 0.3s;">
+				<span class="avatar" style="background-image: url('../www/img/user.png');"></span>
+				<strong>{{knowedgeData.title}}</strong> 
+				<p>{{knowedgeData.message}}</p>
+				<div class="card-footer text-right">
+					<div class="pull-left">
+						<i class="icon ion-clock positive"></i> {{knowedgeData.date | date:'dd/MM/yyyy @ h:mma'}}
+					</div>
+				</div><br>
+				<i class="icon ion-android-person balanced"> </i> {{knowedgeData.author}}
+			</div>
             <div class="item tabs tabs-secondary tabs-icon-left">
                <a class="tab-item stable-bg assertive" ng-class="{ 'activated'   : knowedgeData.likes > 0 }" ng-click="like(knowedgeData.uuid)">
                <i class="icon ion-heart"></i>

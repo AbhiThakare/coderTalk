@@ -11,17 +11,17 @@
       <ion-refresher on-refresh="refresh()"></ion-refresher>
       <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);" ng-show='informationDatas!==undefined' >
          <div class="list card animated bounceInUp" ng-repeat="informationData in informationDatas">
-            <div class="item item-thumbnail-left item-avatar animated">
-               <img ng-src="../www/img/user.png" src="../www/img/user.png">
-               <p class="ng-binding">{{informationData.date |  date:'dd/MM/yyyy @ h:mma'}}</p>
-               <h2 class="ng-binding">{{informationData.title}}</h2>
-               <p class="ng-binding">{{informationData.author}}</p>
-            </div>
-            <div class="item item-body">
-               <p class="ng-binding">
-                  {{informationData.message}}
-               </p>
-            </div>
+            <div class="item item-avatar item-text-wrap in" style="transition-delay: 0.3s;">
+				<span class="avatar" style="background-image: url('../www/img/user.png');"></span>
+				<strong>{{informationData.title}}</strong> 
+				<p>{{informationData.message}}</p>
+				<div class="card-footer text-right">
+					<div class="pull-left">
+						<i class="icon ion-clock positive"></i> {{informationData.date | date:'dd/MM/yyyy @ h:mma'}}
+					</div>
+				</div><br>
+				<i class="icon ion-android-person balanced"> </i> {{informationData.author}}
+			</div>
             <div class="item tabs tabs-secondary tabs-icon-left">
                <a class="tab-item stable-bg assertive" ng-class="{ 'activated'   : informationData.likes > 0 }" ng-click="like(informationData.uuid)">
                <i class="icon ion-heart"></i>
