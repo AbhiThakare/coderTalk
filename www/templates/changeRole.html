@@ -1,26 +1,23 @@
-<ion-view style="" class=" " id="page15" title="Change Password">
-   <ion-content class="has-header" padding="true">
-      <form class="list animated bounceIn " name="changePassForm" class="css-form" novalidate id="changePassword-form2" ng-submit="changePassForm.$valid && changePassword(data)">
-         <label id="changePassword-input2" class="item item-input ">
-         <input placeholder="Old Password" required=""  name="oldPasss" type="password" ng-model="data.oldPass">
-         </label>
-         <div ng-show="changePassForm.$submitted || changePassForm.oldPasss.$touched">
-            <div style="color:red;margin:5px;padding:5px;" ng-show="changePassForm.oldPasss.$error.required">Please enter old password.</div>
-         </div>
-         <label id="changePassword-input3" class="item item-input ">
-         <input placeholder="New Password" required=""  name="newPasss" type="password" ng-model="data.newPass">
-         </label>
-         <div ng-show="changePassForm.$submitted || changePassForm.newPasss.$touched">
-            <div style="color:red;margin:5px;padding:5px;" ng-show="changePassForm.newPasss.$error.required">Please enter new password.</div>
-         </div>
-         <label id="changePassword-input4" class="item item-input ">
-         <input placeholder="Confirm Password" required=""  name="confNewPasss" type="password" ng-model="data.confNewPass">
-         </label>
-         <div ng-show="changePassForm.$submitted || changePassForm.confNewPasss.$touched">
-            <div style="color:red;margin:5px;padding:5px;" ng-show="changePassForm.confNewPasss.$error.required">Please confirm password.</div>
-         </div>
-         <div style="width: 283px; height: 33px;" class="spacer"></div>
-         <button class=" button button-assertive-900  button-block " type="submit" id="changePassword-button10">SUBMIT</button>
-      </form>
-   </ion-content>
+<ion-view style="" class=" " id="page10" title="Change Role">
+    <ion-content class="has-header" padding="true">
+    	<form class="list " name="changeroleform" class="css-form" novalidate id="changeRole-form4" ng-submit="changeroleform.$valid && changeRole(data)">
+            <label id="changeRole-select1" class="item item-select ">
+                <span class="input-label">Change Role To</span>
+                <select ng-model="data.role">
+                    <option value='ROLE_ADMIN'>Admin</option>
+                    <option value='ROLE_SME'>SME</option>
+                    <option value='USER_ROLES' ng-selected="true">USER</option>
+                </select>
+            </label>
+            <div style="width: 283px; height: 28px;" class="spacer"></div>
+            <label id="changeRole-input11" class="item item-input ">
+                <input placeholder="Email" required=""  name="email" type="email" ng-model="data.email">
+            </label>
+            <div ng-show="changeroleform.$submitted || changeroleform.email.$touched">
+		      <div style="color:red;margin:5px;padding:5px;" ng-show="changeroleform.email.$error.required">Please enter email.</div>
+		      <div style="color:red;margin:5px;padding:5px;" ng-show="changeroleform.email.$error.email">Please enter valid email.</div>
+		    </div>
+            <button class="button button-assertive-900 button-block" id="changeRole-button12">SUBMIT</button>
+        </form>
+    </ion-content>
 </ion-view>
