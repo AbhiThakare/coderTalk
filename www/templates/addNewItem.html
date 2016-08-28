@@ -13,15 +13,18 @@
          <div ng-show="postmesgform.$submitted || postmesgform.message.$touched">
             <div style="color:red;margin:5px;padding:5px;" ng-show="postmesgform.message.$error.required">Please enter message.</div>
          </div>
-         <label id="type" class="item item-select ">
+         <label id="type" class="item item-select">
             <span class="input-label">Type</span>
-            <select ng-model="data.channels">
-               <option ng-selected="true" value="information">Information</option>
+            <select ng-model="data.channels" required="" name="channels">
+               <option ng-selected="selected" value="information">Information</option>
                <option value="knowledge">Knowledge</option>
                <option value="broadcast">Broadcast</option>
                <option value="sos">SOS</option>
             </select>
          </label>
+         <div ng-show="postmesgform.$submitted || postmesgform.channels.$touched">
+            <div style="color:red;margin:5px;padding:5px;" ng-show="postmesgform.channels.$error.required">Please select channel.</div>
+         </div>
          <label id="tag" class="item item-input ">
          <input placeholder="Tag" required=""  name="tag" type="text" ng-model="data.tag">
          </label>

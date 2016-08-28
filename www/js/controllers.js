@@ -160,8 +160,8 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
     $scope.isGroupShown = function(messageUUID) {
         return $scope.shownGroup === messageUUID;
     };
-    $scope.toggle = function(messageUUID){
-    	if ($scope.isGroupShown(messageUUID)) {
+    $scope.toggle = function(messageUUID) {
+        if ($scope.isGroupShown(messageUUID)) {
             $scope.shownGroup = null;
         } else {
             $scope.shownGroup = messageUUID;
@@ -266,8 +266,8 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
     $scope.isGroupShown = function(messageUUID) {
         return $scope.shownGroup === messageUUID;
     };
-    $scope.toggle = function(messageUUID){
-    	if ($scope.isGroupShown(messageUUID)) {
+    $scope.toggle = function(messageUUID) {
+        if ($scope.isGroupShown(messageUUID)) {
             $scope.shownGroup = null;
         } else {
             $scope.shownGroup = messageUUID;
@@ -367,8 +367,8 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
     $scope.isGroupShown = function(messageUUID) {
         return $scope.shownGroup === messageUUID;
     };
-    $scope.toggle = function(messageUUID){
-    	if ($scope.isGroupShown(messageUUID)) {
+    $scope.toggle = function(messageUUID) {
+        if ($scope.isGroupShown(messageUUID)) {
             $scope.shownGroup = null;
         } else {
             $scope.shownGroup = messageUUID;
@@ -468,8 +468,8 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
     $scope.isGroupShown = function(messageUUID) {
         return $scope.shownGroup === messageUUID;
     };
-    $scope.toggle = function(messageUUID){
-    	if ($scope.isGroupShown(messageUUID)) {
+    $scope.toggle = function(messageUUID) {
+        if ($scope.isGroupShown(messageUUID)) {
             $scope.shownGroup = null;
         } else {
             $scope.shownGroup = messageUUID;
@@ -496,7 +496,19 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
         });
     };
 }).controller('profileCtrl', function($scope, $state, $ionicPopup, $ionicLoading, ProfileService) {
-    $scope.userProfile = JSON.parse(ProfileService.getData());
+    $ionicLoading.show({
+        templateUrl: "templates/loading.html"
+    });
+    ProfileService.fetchProfileDetials().then(function(profileData) {
+        $ionicLoading.hide();
+        $scope.userProfile = profileData.data.response;
+    }, function(err) {
+        $ionicLoading.hide();
+        var alertPopup = $ionicPopup.alert({
+            title: 'Get reply Failed!',
+            template: err.data.message
+        });
+    });
     $scope.editPhone = function(data) {
         $ionicPopup.prompt({
             title: 'Edit Phone No',
@@ -513,6 +525,9 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
                     var alertPopup = $ionicPopup.alert({
                         title: 'Updated Successfull',
                         template: 'Your phone has been updated'
+                    });
+                    $state.go('profile', {}, {
+                        reload: true
                     });
                 }, function(err) {
                     $ionicLoading.hide();
@@ -573,10 +588,10 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
         AuthService.search(data).then(function(searchedData) {
             $ionicLoading.hide();
             $scope.showFilter = false;
-            if (searchedData !== null) {
+            if (searchedData !== undefined) {
                 $scope.showFilter = true;
             }
-            if (searchedData === null) {
+            if (searchedData === undefined) {
                 var alertPopup = $ionicPopup.alert({
                     title: 'Search Failed!',
                     template: 'No result found!'

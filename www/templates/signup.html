@@ -41,10 +41,13 @@
             </div>
             <label class="item item-input " id="signup-input9" name="confirmPass">
             <span class="input-label">Confirm Password</span>
-            <input type="password" placeholder="" required=""  name="confpassword" ng-model="data.confirmpass">
+            <input type="password" id="confpassword" name="confpassword" ng-model="data.confirmpass" valid-password-c="data.password" required />
             </label>
             <div ng-show="signupform.$submitted || signupform.confpassword.$touched">
                <div style="color:red;margin:5px;padding:5px;" ng-show="signupform.confpassword.$error.required">Please enter password.</div>
+            </div>
+            <div ng-show="signupform.$submitted || signupform.confpassword.$touched">
+               <div style="color:red;margin:5px;padding:5px;" ng-show="signupform.confpassword.$error.noMatch">Passwords do not match.</div>
             </div>
          </ion-list>
          <button class="button button-block button-assertive-900" type="submit" id="login-button13">Signup</button>

@@ -33,10 +33,13 @@
             <div style="color:red;margin:5px;padding:5px;" ng-show="adduserform.password.$error.required">Please enter password.</div>
          </div>
          <label id="createNewUser-input10" class="item item-input ">
-         <input placeholder="Confirm Password" required=""  name="confpassword" type="password" ng-model="data.confirmPass">
+         <input placeholder="Confirm Password" required=""  name="confpassword" type="password" ng-model="data.confirmPass" valid-password-c="data.password">
          </label>
          <div ng-show="adduserform.$submitted || adduserform.confpassword.$touched">
             <div style="color:red;margin:5px;padding:5px;" ng-show="adduserform.confpassword.$error.required">Please enter password.</div>
+         </div>
+         <div ng-show="adduserform.$submitted || adduserform.confpassword.$touched">
+            <div style="color:red;margin:5px;padding:5px;" ng-show="adduserform.confpassword.$error.noMatch">Passwords do not match.</div>
          </div>
          <ion-checkbox style="" ng-model="data.value1" ng-true-value="'admin'" ng-false-value="'NO'">Admin</ion-checkbox>
          <ion-checkbox style="" ng-model="data.value2" ng-true-value="'sme'" ng-false-value="'NO'">SME</ion-checkbox>

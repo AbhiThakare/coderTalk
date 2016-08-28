@@ -1,27 +1,28 @@
 <ion-view style="" class=" " id="page2" title="BROADCAST">
    <ion-nav-buttons side="right">
-	   <div class="paddingTop">
-	      <i class="icon ion-android-search" ng-click="search()"></i>  &nbsp;&nbsp;&nbsp;
-	      <i class="icon ion-android-refresh " ng-click="refresh()"></i> &nbsp;&nbsp;&nbsp;
-	      <i class="icon ion-ios-plus-outline" ui-sref="addNewItem"></i> &nbsp;&nbsp;&nbsp;
-	      <i class="icon ion-log-out" ng-click="logout()"></i> &nbsp;&nbsp;&nbsp;
-	   </div>
+      <div class="paddingTop">
+         <i class="icon ion-android-search" ng-click="search()"></i>  &nbsp;&nbsp;&nbsp;
+         <i class="icon ion-android-refresh " ng-click="refresh()"></i> &nbsp;&nbsp;&nbsp;
+         <i class="icon ion-ios-plus-outline" ui-sref="addNewItem"></i> &nbsp;&nbsp;&nbsp;
+         <i class="icon ion-log-out" ng-click="logout()"></i> &nbsp;&nbsp;&nbsp;
+      </div>
    </ion-nav-buttons>
    <ion-content class="has-header" padding="true">
       <ion-refresher on-refresh="refresh()"></ion-refresher>
       <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);" ng-show='broadcastDatas!==undefined'>
-	      <div class="list card animated bounceInUp" ng-repeat="broadcastData in broadcastDatas">
-	        <div class="item item-avatar item-text-wrap in" style="transition-delay: 0.3s;">
-				<span class="avatar" style="background-image: url('../www/img/user.png');"></span>
-				<strong>{{broadcastData.title}}</strong> 
-				<p>{{broadcastData.message}}</p>
-				<div class="card-footer text-right">
-					<div class="pull-left">
-						<i class="icon ion-clock positive"></i> {{broadcastData.date | date:'dd/MM/yyyy @ h:mma'}}
-					</div>
-				</div><br>
-				<i class="icon ion-android-person balanced"> </i> {{broadcastData.author}}
-			</div>
+         <div class="list card animated bounceInUp" ng-repeat="broadcastData in broadcastDatas">
+            <div class="item item-avatar item-text-wrap in" style="transition-delay: 0.3s;">
+               <span class="avatar" style="background-image: url('../www/img/user.png');"></span>
+               <strong>{{broadcastData.title}}</strong> 
+               <p>{{broadcastData.message}}</p>
+               <div class="card-footer text-right">
+                  <div class="pull-left">
+                     <i class="icon ion-clock positive"></i> {{broadcastData.date | date:'dd/MM/yyyy @ h:mma'}}
+                  </div>
+               </div>
+               <br>
+               <i class="icon ion-android-person balanced"> </i> {{broadcastData.author}}
+            </div>
             <div class="item tabs tabs-secondary tabs-icon-left">
                <a class="tab-item stable-bg assertive" ng-class="{ 'activated'   : broadcastData.likes > 0 }" ng-click="like(broadcastData.uuid)">
                <i class="icon ion-heart"></i>
@@ -43,9 +44,9 @@
                   <span>Comments</span>
                </ion-item>
                <div class="item item-body item-accordion" ng-show='isGroupShown(broadcastData.threadId) && commentsDatas!==undefined && broadcastData.threadId === comments.threadId' ng-repeat="comments in commentsDatas" >
-                  <p class="ng-binding">
-                     {{comments.message}} <br> By - {{comments.author}}
-                  </p>
+                  {{comments.message}} <br> 
+                  <i class="icon ion-clock positive"></i> {{comments.date | date:'dd/MM/yyyy @ h:mma'}}<br>
+                  <i class="icon ion-android-person balanced"> </i> {{comments.author}}
                </div>
             </div>
          </div>
