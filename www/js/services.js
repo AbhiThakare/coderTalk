@@ -23,9 +23,9 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES, URL
     }
 
     function useCredentials(token, data) {
-        var adminrole = (data.roles !== null && data.roles !== undefined) ? data.roles.includes('ROLE_ADMIN') : false;
-        var userrole = (data.roles !== null && data.roles !== undefined) ? data.roles.includes('ROLE_USER') : false;
-        var smerole = (data.roles !== null && data.roles !== undefined) ? data.roles.includes('ROLE_SME') : false;
+        var adminrole = (data.roles !== null && data.roles !== undefined) ? (data.roles.indexOf("ROLE_ADMIN")!== -1) ? true : false : false;
+        var userrole = (data.roles !== null && data.roles !== undefined) ? (data.roles.indexOf("ROLE_USER")!== -1) ? true : false : false;
+        var smerole = (data.roles !== null && data.roles !== undefined) ? (data.roles.indexOf("ROLE_SME")!== -1) ? true : false : false;
         role = (data.roles !== null && data.roles !== undefined) ? 'ROLE_USER' : 'ROLE_USER';
         isAuthenticated = true;
         authToken = token;
