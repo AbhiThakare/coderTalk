@@ -157,26 +157,26 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
             }
         });
     };
-    $scope.isGroupShown = function(messageUUID) {
-        return $scope.shownGroup === messageUUID;
+    $scope.isGroupShown = function(messageThreadId) {
+        return $scope.shownGroup === messageThreadId;
     };
-    $scope.toggle = function(messageUUID) {
-        if ($scope.isGroupShown(messageUUID)) {
+    $scope.toggle = function(messageThreadId) {
+        if ($scope.isGroupShown(messageThreadId)) {
             $scope.shownGroup = null;
         } else {
-            $scope.shownGroup = messageUUID;
+            $scope.shownGroup = messageThreadId;
         }
     };
-    $scope.getComment = function(messageUUID) {
-        if ($scope.isGroupShown(messageUUID)) {
+    $scope.getComment = function(messageThreadId) {
+        if ($scope.isGroupShown(messageThreadId)) {
             $scope.shownGroup = null;
         } else {
-            $scope.shownGroup = messageUUID;
+            $scope.shownGroup = messageThreadId;
         }
         $ionicLoading.show({
             templateUrl: "templates/loading.html"
         });
-        DashboardService.getComments(messageUUID).then(function(commentsData) {
+        DashboardService.getComments(messageThreadId).then(function(commentsData) {
             $ionicLoading.hide();
             $scope.commentsDatas = commentsData.data.response;
         }, function(err) {
@@ -263,26 +263,26 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
             }
         });
     };
-    $scope.isGroupShown = function(messageUUID) {
-        return $scope.shownGroup === messageUUID;
+    $scope.isGroupShown = function(messageThreadId) {
+        return $scope.shownGroup === messageThreadId;
     };
-    $scope.toggle = function(messageUUID) {
-        if ($scope.isGroupShown(messageUUID)) {
+    $scope.toggle = function(messageThreadId) {
+        if ($scope.isGroupShown(messageThreadId)) {
             $scope.shownGroup = null;
         } else {
-            $scope.shownGroup = messageUUID;
+            $scope.shownGroup = messageThreadId;
         }
     };
-    $scope.getComment = function(messageUUID) {
-        if ($scope.isGroupShown(messageUUID)) {
+    $scope.getComment = function(messageThreadId) {
+        if ($scope.isGroupShown(messageThreadId)) {
             $scope.shownGroup = null;
         } else {
-            $scope.shownGroup = messageUUID;
+            $scope.shownGroup = messageThreadId;
         }
         $ionicLoading.show({
             templateUrl: "templates/loading.html"
         });
-        DashboardService.getComments(messageUUID).then(function(commentsData) {
+        DashboardService.getComments(messageThreadId).then(function(commentsData) {
             $ionicLoading.hide();
             $scope.commentsDatas = commentsData.data.response;
         }, function(err) {
@@ -364,26 +364,26 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
             }
         });
     };
-    $scope.isGroupShown = function(messageUUID) {
-        return $scope.shownGroup === messageUUID;
+    $scope.isGroupShown = function(messageThreadId) {
+        return $scope.shownGroup === messageThreadId;
     };
-    $scope.toggle = function(messageUUID) {
-        if ($scope.isGroupShown(messageUUID)) {
+    $scope.toggle = function(messageThreadId) {
+        if ($scope.isGroupShown(messageThreadId)) {
             $scope.shownGroup = null;
         } else {
-            $scope.shownGroup = messageUUID;
+            $scope.shownGroup = messageThreadId;
         }
     };
-    $scope.getComment = function(messageUUID) {
-        if ($scope.isGroupShown(messageUUID)) {
+    $scope.getComment = function(messageThreadId) {
+        if ($scope.isGroupShown(messageThreadId)) {
             $scope.shownGroup = null;
         } else {
-            $scope.shownGroup = messageUUID;
+            $scope.shownGroup = messageThreadId;
         }
         $ionicLoading.show({
             templateUrl: "templates/loading.html"
         });
-        DashboardService.getComments(messageUUID).then(function(commentsData) {
+        DashboardService.getComments(messageThreadId).then(function(commentsData) {
             $ionicLoading.hide();
             $scope.commentsDatas = commentsData.data.response;
         }, function(err) {
@@ -465,26 +465,26 @@ angular.module('app').controller('AppCtrl', function($scope, $state, $ionicPopup
             }
         });
     };
-    $scope.isGroupShown = function(messageUUID) {
-        return $scope.shownGroup === messageUUID;
+    $scope.isGroupShown = function(messageThreadId) {
+        return $scope.shownGroup === messageThreadId;
     };
-    $scope.toggle = function(messageUUID) {
-        if ($scope.isGroupShown(messageUUID)) {
+    $scope.toggle = function(messageThreadId) {
+        if ($scope.isGroupShown(messageThreadId)) {
             $scope.shownGroup = null;
         } else {
-            $scope.shownGroup = messageUUID;
+            $scope.shownGroup = messageThreadId;
         }
     };
-    $scope.getComment = function(messageUUID) {
-        if ($scope.isGroupShown(messageUUID)) {
+    $scope.getComment = function(messageThreadId) {
+        if ($scope.isGroupShown(messageThreadId)) {
             $scope.shownGroup = null;
         } else {
-            $scope.shownGroup = messageUUID;
+            $scope.shownGroup = messageThreadId;
         }
         $ionicLoading.show({
             templateUrl: "templates/loading.html"
         });
-        DashboardService.getComments(messageUUID).then(function(commentsData) {
+        DashboardService.getComments(messageThreadId).then(function(commentsData) {
             $ionicLoading.hide();
             $scope.commentsDatas = commentsData.data.response;
         }, function(err) {

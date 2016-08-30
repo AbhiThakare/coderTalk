@@ -310,11 +310,11 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES, URL
         var token = window.localStorage.getItem(LOCAL_TOKEN);
         return token;
     }
-    var getComments = function(messageUUID) {
+    var getComments = function(messageThreadId) {
         return $q(function(resolve, reject) {
             var comments = [];
             var req = {
-                url: URL.urlChannels + "messages/thread/" + messageUUID,
+                url: URL.urlChannels + "messages/thread/" + messageThreadId,
                 method: 'GET',
                 headers: {
                     'Authorization': getHeaderToken(),
