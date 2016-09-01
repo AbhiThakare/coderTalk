@@ -6,7 +6,6 @@ h1 {
     font-size: 42px;
 }
 
-
 /* Utilities
 ==================================*/
 .title-bordered {
@@ -23,9 +22,18 @@ p {
     height: 100%;
 }
 
-.paddingTop{
-	padding-top: 13px;
+ion-content{
+	margin-top:10px !important;
+}
+
+.paddingTop button {
 	color: #fff !important;
+	font-size: 24px !important;
+	margin-top: 5px;
+}
+
+.bar button.button-icon:before{
+	font-size: 24px !important;
 }
 /* Menu
 ==================================*/
@@ -34,6 +42,7 @@ p {
 }
 .bar-header{
 	background: #B71C1C !important;
+	height:60px;
 }
 
 .title-left.header-item {
@@ -69,6 +78,13 @@ p {
 
 .menu-open .ion-navicon:before {
     content: "\f2ca";
+}
+
+.tabs-icon-left.tabs .tab-item, .tabs-icon-left > .tabs .tab-item, .tabs-icon-right.tabs .tab-item, .tabs-icon-right > .tabs .tab-item{
+	font-size: 14px;
+}
+.tab-nav.tabs{
+	margin-top:20px;
 }
 
 

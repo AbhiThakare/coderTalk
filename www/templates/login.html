@@ -1,8 +1,8 @@
 <ion-view title="Login" hide-nav-bar="true" id="page16" style="background-color:#;" class=" ">
    <ion-content class="has-header" scroll="true" padding="true">
-      <h2 id="signup-heading2" style="color:#000000;font-weight:400;text-align:center;" class=" "><img style="text-align:center;" src ='../www/img/Logo.png' alt="Login" /></h2>
+      <h2 id="signup-heading2" style="color:#000000;font-weight:400;text-align:center;" class=" "><img style="text-align:center;" src ='../www/img/icon.png' alt="Login" /></h2>
       <div style="height: 40px;" class="spacer"></div>
-      <form class="list animated bounceIn " name="loginform" class="css-form" novalidate id="login-form7" ng-submit="loginform.$valid && login(data)">
+      <form class="list animated bounceIn " name="loginform" class="css-form" novalidate id="login-form7" ng-submit="">
          <ion-list class=" " id="login-list5">
             <label id="login-input15" class="item item-input ">
             <span class="input-label">Username</span>
@@ -21,11 +21,14 @@
             </div>
          </ion-list>
          <div style="height: 40px;" class="spacer"></div>
-         <input  class="button button-block button-assertive-900" type="submit" id="login-button13" value="Login"/>
-         <a ui-sref="signup" id="login-button2">  <input class="button button-block button-outline button-positive" type="submit" id="login-button13" value="Or create an account"/></a>
+         <input  class="button button-block button-assertive-900" ng-click="loginform.$valid && login(data)" type="submit" id="login-button13" value="Login"/>
+         <div style="height: 40px;" class="spacer"></div>
+         <div class="button-bar social-login">
+	          <button class="button button-small button-border icon-left ion-social-google button-assertive-900">Google+</button>
+	          <button class="button button-small button-border icon-left ion-social-twitter button-calm-900">Twitter</button>
+	          <button class="button button-small button-border icon-left ion-social-facebook button-positive-900">Facebook</button>
+	     </div>
       </form>
-      <ion-footer-bar align-title="center" class="bar">
-         <h5 class="title title-center"  style="font-size:10px;" >Copyright &#169; IBM India Pvt. Ltd 2016</h5>
-      </ion-footer-bar>
+      <a ui-sref="signup" id="login-button2" class="button button-positive button-block button-clear ">Signup</a>
    </ion-content>
 </ion-view>
