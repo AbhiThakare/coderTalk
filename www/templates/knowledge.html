@@ -35,9 +35,6 @@
                <i class="icon" ng-class="isGroupShown(knowedgeData.threadId) ? 'ion-chevron-up' : 'ion-arrow-expand'"></i> Comments
                </a>
             </div>
-            <div class="list card"  ng-show='knowedgeData.threadId===undefined'">
-               <ion-item  class="item-stable"><span>No Comments Yet</span></ion-item>
-            </div>
             <div class="list card"  ng-show='knowedgeData.threadId!==undefined && isGroupShown(knowedgeData.threadId)'>
                <ion-item  class="item-stable">
                   <span>Comments</span>
