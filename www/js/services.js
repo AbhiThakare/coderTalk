@@ -336,6 +336,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES, URL
     var addComment = function(message, messagedata, channel) {
         return $q(function(resolve, reject) {
             var comments = [];
+            var token = JSON.parse(getAccessToken());
             var req = {
                 url: URL.urlChannels + channel + "/message/" + messagedata.uuid + "/reply",
                 method: 'PUT',
@@ -347,7 +348,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES, URL
                     "title": messagedata.title,
                     "message": message,
                     "likes": messagedata.likes,
-                    "author": messagedata.author,
+                    "author": token.email,
                     "date": today + 'T24:00:00.000+0530'
                 }
             }
