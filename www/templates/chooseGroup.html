@@ -1,0 +1,20 @@
+<ion-view style="" class=" " id="chooseGroup" title="Choose Group" hide-back-button="true">
+   <ion-content class="has-header" padding="true">
+      <form class="list " name="chooseGroupform" class="css-form" novalidate id="changeRole-form4" ng-submit="chooseGroupform.$valid && selectGroup(data)">
+         <label id="chooseGroup" class="item item-select ">
+            <span class="input-label">Group</span>
+            <select ng-model="data.group" required="" name='group'>
+               <option value='gr1'>Group 1</option>
+               <option value='gr2'>Group 2</option>
+               <option value='gr3' ng-selected="selected">Group 3</option>
+            </select>
+         </label>
+         <div ng-show="chooseGroupform.$submitted || chooseGroupform.group.$touched">
+            <div style="color:red;margin:5px;padding:5px;" ng-show="chooseGroupform.group.$error.required">Please Select Group.</div>
+         </div>
+         <button class="button button-assertive-900 button-block" id="changeRole-button12">SUBMIT</button>
+         <a ui-sref="createGroup" id="login-button2" class="button button-positive button-block button-clear ">Create new Group</a> &nbsp; 
+         <a ui-sref="createGroup" id="login-button2" class="button button-positive button-block button-clear ">join new Group</a>
+      </form>
+   </ion-content>
+</ion-view>

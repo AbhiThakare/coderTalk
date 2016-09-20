@@ -1,0 +1,31 @@
+<ion-view style="" class=" " id="page17" title="Create Group">
+   <ion-content padding="true" class="manual-ios-statusbar-padding" scroll="true">
+      <h2 id="signup-heading2" style="color:#000000;font-weight:400;text-align:center;" class=" ">Create Group</h2>
+      <form class="list animated bounceIn " name="createGroupform" class="css-form" novalidate id="signup-form4" ng-submit="createGroupform.$valid && createGroup(data)">
+         <ion-list id="signup-list5" class=" ">
+	        <label id="chooseGroup" class="item item-select ">
+	           <span class="input-label">Group Type</span>
+	           <select ng-model="data.grouptype" required="" name='grouptype'>
+	              <option value='private'>Private</option>
+	              <option value='public' ng-selected="selected">Public</option>
+	           </select>
+	        </label>
+	        <div ng-show="createGroupform.$submitted || createGroupform.grouptype.$touched">
+	           <div style="color:red;margin:5px;padding:5px;" ng-show="createGroupform.grouptype.$error.required">Please Select Group.</div>
+	        </div>
+            <label class="item item-input " id="signup-input4" name="groupname">
+            <span class="input-label">Group name</span>
+            <input type="text" placeholder="" required=""  name="groupname" ng-model="data.groupname">
+            </label>
+            <div ng-show="createGroupform.$submitted || createGroupform.groupname.$touched">
+               <div style="color:red;margin:5px;padding:5px;" ng-show="createGroupform.groupname.$error.required">Please enter group name.</div>
+            </div>
+            <ion-checkbox style="" ng-model="data.value1" ng-true-value="'broadcast'" ng-false-value="'NO'">Broadcast</ion-checkbox>
+	        <ion-checkbox style="" ng-model="data.value2" ng-true-value="'information'" ng-false-value="'NO'">Information</ion-checkbox>
+	        <ion-checkbox style="" ng-model="data.value3" ng-true-value="'Knowledge'" ng-false-value="'NO'">Knowledge</ion-checkbox>
+	        <ion-checkbox style="" ng-model="data.value4" ng-true-value="'sos'" ng-false-value="'NO'">SOS</ion-checkbox>
+         </ion-list>
+         <button class="button button-block button-assertive-900" type="submit" id="login-button13">Create</button>
+      </form>
+   </ion-content>
+</ion-view>

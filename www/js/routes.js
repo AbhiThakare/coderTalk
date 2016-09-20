@@ -81,14 +81,6 @@ angular.module('app').config(function($stateProvider, $urlRouterProvider, USER_R
         url: '/page14',
         templateUrl: 'templates/credits.html',
         controller: 'creditsCtrl'
-    }).state('tabs.detailedPage', {
-        url: '/page8',
-        views: {
-            'tab1': {
-                templateUrl: 'templates/detailedPage.html',
-                controller: 'detailedPageCtrl'
-            }
-        }
     }).state('tabs', {
         url: '/page1',
         templateUrl: 'templates/tabs.html',
@@ -103,6 +95,15 @@ angular.module('app').config(function($stateProvider, $urlRouterProvider, USER_R
         abstract: false,
         templateUrl: 'templates/signup.html',
         controller: 'signupCtrl'
+    }).state('chooseGroup', {
+        url: '/chooseGroup',
+        templateUrl: 'templates/chooseGroup.html',
+        controller: 'groupCtrl'
+    }).state('createGroup', {
+        url: '/createGroup',
+        abstract: false,
+        templateUrl: 'templates/createGroup.html',
+        controller: 'groupCtrl'
     })
-    $urlRouterProvider.otherwise('/page16')
+    $urlRouterProvider.otherwise('/page16');
 });

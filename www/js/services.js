@@ -106,6 +106,33 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES, URL
             });
         });
     };
+    var loginFacebook = function (){
+    	//login with facebook code goes here
+    	//for now bypass login 
+    	var token = 'Basic ' + window.btoa('test.user@in.ibm.com' + ':' + '123123123');
+        return $q(function(resolve, reject) {
+            var req = {
+                url: URL.url + "/authenticate",
+                method: 'POST',
+                headers: {
+                    'Authorization': token
+                },
+                params: {
+                    'email': 'test.user@in.ibm.com'
+                }
+            }
+            $http(req).then(function(data) {
+                if (data.data.status == 'SUCCESS') {
+                    storeUserCredentials(data.data.response.fname + '.yourServerToken', data.data.response, token);
+                    resolve(data.data.response);
+                } else {
+                    reject('Login Failed!');
+                }
+            }, function(err) {
+                reject(err);
+            });
+        });
+    };
     var changePassword = function(userData) {
         var token = JSON.parse(getAccessToken());
         return $q(function(resolve, reject) {
@@ -149,6 +176,7 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES, URL
         isAuthorized: isAuthorized,
         search: search,
         changePassword: changePassword,
+        loginFacebook: loginFacebook,
         isAuthenticated: function() {
             return isAuthenticated;
         },
@@ -159,6 +187,39 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES, URL
             return role;
         }
     };
+}).service('GroupService', function($q, $http, USER_ROLES, URL) {
+	var createGroup = function(userData,channelList) {
+        return $q(function(resolve, reject) {
+            var req = {
+                url: URL.urlnew,
+                method: 'PUT',
+                data: { 
+                	"channelList": channelList,
+	                "createdBy": "10207327903415577",
+	                "groupType": userData.grouptype,
+	                "name": userData.groupname
+	            },
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJZCI6IjMxMDk5NTM1NTkxNTA3NyIsInByb3ZpZGVyIjoiZmFjZWJvb2siLCJ1c2VyX25hbWUiOiIxMDIwNzMyNzkwMzQxNTU3NyIsInNjb3BlIjpbInJlYWQiXSwiZXhwIjoxNDczMzIxNTI0LCJ1c2VyTmFtZSI6IkFiaGluYXYgVGhha2FyZSIsInVzZXJJZCI6IjEwMjA3MzI3OTAzNDE1NTc3IiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6IjUzY2M4Y2U1LWEyOTgtNDFkNS1iMmRkLWY5OGUzMzkyYWI5ZSIsImNsaWVudF9pZCI6ImNlNzFkY2IzLTliY2EtNDMzNS1iOTAyLTM2ODdmZmI0YzAyMCJ9.yo-I5f3_Bpk797ZgUm5KJPL2h2DW4O-vX31hyyk3_i4'
+                }
+            }
+            $http(req).then(function(data) {
+                console.log(data);
+                if (data.data.status == 'SUCCESS') {
+                    resolve(data);
+                } else {
+                    reject('Update Expertise Failed!');
+                }
+            }, function(err) {
+                reject(err);
+            });
+        });
+    };
+    return {
+    	createGroup: createGroup
+    };
+    
 }).service('SignupService', function($q, $http, USER_ROLES, URL) {
     function getAccessToken() {
         var LOCAL_DATA = 'yourData';
@@ -594,6 +655,17 @@ angular.module('app').service('AuthService', function($q, $http, USER_ROLES, URL
             return $q.reject(response);
         }
     };
+}).factory('OAuthService', function($resource,apiUrl){
+    var data = $resource('http://inmbz2239.in.dst.ibm.com:8091/bigoauth2server/oauth/token' , {}, {
+        general:{
+            method:'POST',
+            headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded',
+                  'authorization': 'Basic cG9zdG1hbjpwYXNzd29yZDAx'
+              }
+            }
+        });
+        return data;
 }).config(function($httpProvider) {
     $httpProvider.interceptors.push('AuthInterceptor');
 });
